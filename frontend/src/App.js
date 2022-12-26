@@ -1,11 +1,11 @@
 import React from "react";
 
-import { Route, Switch } from "react-router-dom";
+import { Redirect, Route, Switch } from "react-router-dom";
 
 import Layout from "./components/Layout/Layout";
 
 import HomePage from "./pages/HomePage";
-import BlogPage from "./pages/Blog";
+import BlogPage from "./pages/BlogPage";
 import ForumPage from "./pages/Forum";
 import AboutUsPage from "./pages/AboutUs";
 import ContactUsPage from "./pages/ContactUs";
@@ -15,6 +15,9 @@ function App() {
   return (
     <Layout>
       <Switch>
+        <Route path="/" exact>
+          <Redirect to="/home"></Redirect>
+        </Route>
         <Route path="/home">
           <HomePage />
         </Route>

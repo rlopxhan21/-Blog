@@ -46,7 +46,9 @@ const MainHeader = () => {
           </div>
         </div>
         <div className={classes.right}>
-          <Link to="/register">Login/ Sign Up</Link>
+          <Link to="/register" replace>
+            Login/ Sign Up
+          </Link>
         </div>
         <div className={classes.bars}>
           <Link>

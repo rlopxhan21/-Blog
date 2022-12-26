@@ -1,0 +1,42 @@
+.blogitem {
+  padding: 2rem 0;
+  article {
+    padding: 1rem 0;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    .left {
+      width: 400px;
+      text-align: left;
+      h3 {
+        font-weight: 800;
+        font-size: 32px;
+        margin-bottom: 1rem;
+      }
+
+      p {
+        &:nth-child(4) {
+          margin-top: 0.5rem;
+          color: grey;
+        }
+      }
+    }
+
+    .middle {
+      text-align: left;
+
+      align-self: flex-start;
+      width: 400px;
+    }
+
+    .right {
+      img {
+        height: 200px;
+        width: 400px;
+      }
+    }
+  }
+}
