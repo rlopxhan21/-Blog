@@ -1,0 +1,53 @@
+$text-color-white: #a9a9b3;
+$background-color-black: #000000;
+$background-color-grey: #121416;
+
+.about {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+  margin-top: 4rem;
+
+  display: flex;
+  justify-items: center;
+  align-items: center;
+
+  .container {
+    padding: 2rem 0;
+    opacity: 0.8;
+    margin: auto;
+    width: 900px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    .about-content {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      gap: 4rem;
+
+      .left {
+        width: 400px;
+        height: 500px;
+        background-image: url(../../../assets/images/sketchpp.png);
+      }
+
+      .right {
+        margin-top: 2rem;
+        width: 400px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 2rem;
+      }
+    }
+  }
+}

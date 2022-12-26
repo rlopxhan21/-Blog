@@ -112,6 +112,16 @@ $background-color-grey: #121416;
           background-color: $text-color-white;
           color: $background-color-grey;
         }
+
+        .name {
+          flex-direction: column;
+          gap: 2rem;
+        }
+
+        .password {
+          flex-direction: column;
+          gap: 2rem;
+        }
       }
     }
   }
