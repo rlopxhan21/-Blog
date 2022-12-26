@@ -4,6 +4,7 @@ $background-color-grey: #121416;
 
 .nav {
   background-color: $background-color-black;
+  position: sticky;
 
   .container {
     width: 80%;
@@ -73,6 +74,15 @@ $background-color-grey: #121416;
 @media screen and (max-width: 1024px) {
   .nav {
     .left {
+      .brandname {
+        font-size: 18px;
+
+        .blinksquare {
+          height: 14px;
+          width: 9px;
+        }
+      }
+
       .navlink {
         display: none;
       }

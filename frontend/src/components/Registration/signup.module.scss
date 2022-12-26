@@ -68,6 +68,14 @@ $background-color-grey: #121416;
         }
       }
 
+      .name {
+        flex-direction: row;
+      }
+
+      .password {
+        flex-direction: row;
+      }
+
       button {
         padding: 0.5rem 3rem;
         width: 100%;
