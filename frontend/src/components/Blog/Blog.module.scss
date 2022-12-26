@@ -11,3 +11,13 @@
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .blog {
+    .container {
+      h1 {
+        display: none;
+      }
+    }
+  }
+}

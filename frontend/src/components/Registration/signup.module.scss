@@ -124,3 +124,40 @@ $background-color-grey: #121416;
     }
   }
 }
+
+@media screen and (max-width: 768px) {
+  .login {
+    margin-top: 0;
+    .container {
+      width: 100%;
+
+      h1 {
+        font-size: 20px;
+        font-weight: 800;
+      }
+
+      form {
+        width: 100%;
+        div {
+          label {
+            font-size: 18px;
+          }
+
+          input {
+            font-size: 18px;
+            font-weight: 300;
+          }
+        }
+      }
+
+      p {
+        .fpass {
+          font-size: 18px;
+          font-weight: 300;
+        }
+        font-size: 18px;
+        font-weight: 300;
+      }
+    }
+  }
+}

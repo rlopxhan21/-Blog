@@ -13,6 +13,12 @@ const ForumItem = (props) => {
         </div>
       </div>
       <p>{props.post.substring(0, 1000)}</p>
+      <div className={classes["post-review"]}>
+        <button>Upvote</button>
+        <button>Downvote</button>
+        <button>Comment</button>
+        <button>Share</button>
+      </div>
     </div>
   );
 };

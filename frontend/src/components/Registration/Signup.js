@@ -51,7 +51,9 @@ const Signup = () => {
           <button type="submit">Sign Up</button>
         </form>
         <p>
-          <Link to="/">Forget password</Link>
+          <Link to="/" className={classes.fpass}>
+            Forget password
+          </Link>
         </p>
         <p onClick={changeFormHandler}>Already have an account</p>
       </div>

@@ -77,11 +77,11 @@ $background-color-grey: #121416;
   .nav {
     .left {
       .brandname {
-        font-size: 18px;
+        font-size: 16px;
 
         .blinksquare {
-          height: 14px;
-          width: 9px;
+          height: 12px;
+          width: 8px;
         }
       }
 
@@ -96,6 +96,9 @@ $background-color-grey: #121416;
 
     .bars {
       display: block;
+      i {
+        font-size: 14px;
+      }
     }
   }
 }

@@ -17,6 +17,12 @@ const BlogItem = (props) => {
           <img src={require("../../assets/images/profile.jpg")} alt={""} />
         </div>
       </article>
+      <div className={classes["post-review"]}>
+        <button>Upvote</button>
+        <button>Downvote</button>
+        <button>Comment</button>
+        <button>Share</button>
+      </div>
     </div>
   );
 };

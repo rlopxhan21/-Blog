@@ -31,7 +31,9 @@ const Login = () => {
           <button type="submit">Login</button>
         </form>
         <p>
-          <Link to="/">Forget password</Link>
+          <Link to="/" className={classes.fpass}>
+            Forget password
+          </Link>
         </p>
         <p onClick={changeFormHandler}>Create new account</p>
       </div>

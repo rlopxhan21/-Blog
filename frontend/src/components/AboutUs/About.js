@@ -6,7 +6,9 @@ const About = () => {
       <div className={classes.container}>
         <h1>About Us</h1>
         <div className={classes["about-content"]}>
-          <div className={classes.left}></div>
+          <div className={classes.left}>
+            <img src={require("../../assets/images/sketchpp.png")} alt={""} />
+          </div>
           <div className={classes.right}>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do

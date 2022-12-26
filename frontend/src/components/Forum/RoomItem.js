@@ -5,7 +5,9 @@ import classes from "./RoomItem.module.scss";
 const RoomItem = (props) => {
   return (
     <div className={classes.roomitem}>
-      <Link to="/">{props.room}</Link>
+      <Link to="/" className={classes.room}>
+        {props.room}
+      </Link>
     </div>
   );
 };

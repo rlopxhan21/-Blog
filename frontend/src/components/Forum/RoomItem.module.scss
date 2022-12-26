@@ -5,9 +5,13 @@ $background-color-grey: #121416;
 .roomitem {
   margin-bottom: 2rem;
   padding: 1rem 0.5rem;
+  width: 100%;
 
   &:hover {
     background-color: $text-color-white;
-    color: $background-color-black;
+    .room {
+      color: $background-color-grey;
+      background-color: $text-color-white;
+    }
   }
 }
