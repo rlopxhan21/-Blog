@@ -48,7 +48,7 @@ const Signup = () => {
               <input type="password" required />
             </div>
           </div>
-          <button type="submit">Login</button>
+          <button type="submit">Sign Up</button>
         </form>
         <p>
           <Link to="/">Forget password</Link>
