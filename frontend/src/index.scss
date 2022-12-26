@@ -1,0 +1,30 @@
+$text-color-white: #a9a9b3;
+$background-color-black: #1b1c1d86;
+$background-color-grey: #121416;
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  color: $text-color-white;
+  background-color: $background-color-grey;
+  font-family: "K2D", monospace, sans-serif;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+* {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: $text-color-white;
+}

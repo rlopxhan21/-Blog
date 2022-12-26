@@ -1,0 +1,89 @@
+$text-color-white: #a9a9b3;
+$background-color-black: #000000;
+$background-color-grey: #121416;
+
+.nav {
+  background-color: $background-color-black;
+
+  .container {
+    width: 80%;
+    margin: auto;
+    padding: 1rem 0;
+
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .left {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 3rem;
+
+    .brandname {
+      font-weight: 700;
+      font-size: 24px;
+
+      .blinksquare {
+        background-color: $text-color-white;
+        display: inline-block;
+        height: 18px;
+        width: 10px;
+        animation: squareBlink 1s linear infinite;
+        margin-left: 10px;
+      }
+    }
+
+    .navlink {
+      ul {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1.5rem;
+      }
+
+      .active {
+        border-bottom: 2px solid $text-color-white;
+      }
+    }
+  }
+
+  .bars {
+    display: none;
+  }
+}
+
+@keyframes squareBlink {
+  0% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  75% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .nav {
+    .left {
+      .navlink {
+        display: none;
+      }
+    }
+
+    .right {
+      display: none;
+    }
+
+    .bars {
+      display: block;
+    }
+  }
+}
