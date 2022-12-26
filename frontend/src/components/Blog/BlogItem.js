@@ -7,8 +7,15 @@ const BlogItem = (props) => {
         <div className={classes.left}>
           <p>{props.area}</p>
           <h3>{props.topic.substring(0, 75)}</h3>
-          <p>{props.author}</p>
-          <p>7{props.published_date}</p>
+          <div className={classes["author-section"]}>
+            <div>
+              <img src={require("../../assets/images/profile.jpg")} alt={""} />
+            </div>
+            <div>
+              <p>{props.author}</p>
+              <p>7{props.published_date}</p>
+            </div>
+          </div>
         </div>
         <div className={classes.middle}>
           <p>{props.content.substring(0, 400)}</p>

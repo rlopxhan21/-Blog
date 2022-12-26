@@ -32,10 +32,31 @@ $background-color-grey: #121416;
         margin-bottom: 1rem;
       }
 
-      p {
-        &:nth-child(4) {
-          margin-top: 0.5rem;
-          color: grey;
+      .author-section {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        gap: 1rem;
+        div {
+          &:nth-child(1) {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            overflow: hidden;
+
+            img {
+              width: 40px;
+            }
+          }
+
+          &:nth-child(2) {
+            p {
+              &:nth-child(2) {
+                margin-top: 0.5rem;
+                color: grey;
+              }
+            }
+          }
         }
       }
     }
@@ -95,7 +116,14 @@ $background-color-grey: #121416;
 
 @media screen and (max-width: 768px) {
   .blogitem {
+    margin-bottom: 1rem;
     padding: 0;
+    opacity: 1;
+
+    &:nth-child(even) {
+      opacity: 0.7;
+    }
+
     article {
       .left {
         p {
@@ -127,13 +155,16 @@ $background-color-grey: #121416;
 
     .post-review {
       display: flex;
-      justify-content: flex-start;
+      justify-content: space-around;
       button {
         font-size: 14px;
         font-weight: 300;
-        border: none;
-        background-color: $text-color-white;
-        color: $background-color-grey;
+
+        &:hover,
+        &:active {
+          background-color: $text-color-white;
+          color: $background-color-grey;
+        }
 
         padding: 0.25rem 0.5rem;
       }
