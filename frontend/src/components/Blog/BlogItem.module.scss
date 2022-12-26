@@ -1,5 +1,12 @@
 .blogitem {
   padding: 2rem 0;
+
+  &:nth-child(1) {
+    article {
+      //   display: flex;
+      //   flex-direction: column;
+    }
+  }
   article {
     padding: 1rem 0;
 
