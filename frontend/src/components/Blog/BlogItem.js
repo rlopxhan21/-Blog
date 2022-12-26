@@ -17,7 +17,6 @@ const BlogItem = (props) => {
           <img src={require("../../assets/images/profile.jpg")} alt={""} />
         </div>
       </article>
-      <hr />
     </div>
   );
 };

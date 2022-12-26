@@ -1,5 +1,10 @@
 .blogitem {
   padding: 2rem 0;
+  opacity: 0.7;
+
+  &:hover {
+    opacity: 1;
+  }
 
   &:nth-child(1) {
     article {
@@ -40,9 +45,45 @@
     }
 
     .right {
+      height: 200px;
+      width: 400px;
+      overflow: hidden;
       img {
-        height: 200px;
         width: 400px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .blogitem {
+    article {
+      .left {
+        h3 {
+          font-size: 26px;
+        }
+      }
+      .middle {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .blogitem {
+    article {
+      .left {
+        h3 {
+          font-size: 26px;
+        }
+      }
+      .middle {
+        display: none;
+      }
+
+      .right {
+        display: none;
       }
     }
   }

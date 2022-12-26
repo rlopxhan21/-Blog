@@ -6,7 +6,7 @@ import Layout from "./components/Layout/Layout";
 
 import HomePage from "./pages/HomePage";
 import BlogPage from "./pages/BlogPage";
-import ForumPage from "./pages/Forum";
+import ForumPage from "./pages/ForumPage";
 import AboutUsPage from "./pages/AboutUs";
 import ContactUsPage from "./pages/ContactUs";
 import Register from "./pages/Register";

@@ -1,0 +1,13 @@
+$text-color-white: #a9a9b3;
+$background-color-black: #000000;
+$background-color-grey: #121416;
+
+.roomitem {
+  margin-bottom: 2rem;
+  padding: 1rem 0.5rem;
+
+  &:hover {
+    background-color: $text-color-white;
+    color: $background-color-black;
+  }
+}
