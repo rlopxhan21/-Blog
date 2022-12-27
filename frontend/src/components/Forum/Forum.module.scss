@@ -1,3 +1,7 @@
+$text-color-white: #a9a9b3;
+$background-color-black: #000000;
+$background-color-grey: #121416;
+
 .forum {
   width: 80%;
   margin: auto;
@@ -8,7 +12,73 @@
     padding: 2rem 0;
 
     display: grid;
-    grid-template-columns: 1fr 3fr 1fr;
+    grid-template-areas: "left middle middle middle right";
     gap: 4rem;
+
+    .left {
+      grid-area: left;
+
+      button {
+        display: none;
+      }
+    }
+
+    .middle {
+      grid-area: middle;
+    }
+
+    .right {
+      grid-area: right;
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .forum {
+    margin-top: 0;
+    width: 95%;
+    margin-top: 0;
+
+    .container {
+      padding: 0;
+      width: 100%;
+      grid-template-areas:
+        " left "
+        " middle "
+        " right ";
+
+      .left {
+        grid-area: left;
+
+        button {
+          display: block;
+          margin-top: 1rem;
+          width: 100%;
+          padding: 0.25rem 1rem;
+          font-size: 16px;
+          font-weight: 600;
+          border: 1px solid $text-color-white;
+          background-color: $background-color-grey;
+          color: $text-color-white;
+          i {
+            margin-left: 2rem;
+            color: $text-color-white;
+            font-size: 14px;
+          }
+        }
+
+        div {
+          display: none;
+        }
+      }
+      .middle {
+        grid-area: middle;
+      }
+
+      .right {
+        display: none;
+        grid-area: right;
+      }
+    }
   }
 }

@@ -1,3 +1,5 @@
+import React, { useState } from "react";
+
 import classes from "./Forum.module.scss";
 
 import ForumItem from "./ForumItem";
@@ -32,6 +34,7 @@ const DUMMY_DATA = [
 ];
 
 const ROOM_DATA = [
+  { id: "r7", room: "Create Room" },
   { id: "r1", room: "Python" },
   { id: "r2", room: "Javascript" },
   { id: "r3", room: "Java" },
@@ -45,10 +48,16 @@ const Forum = () => {
     <div className={classes.forum}>
       <div className={classes.container}>
         <div className={classes.left}>
-          {/* <h3>Rooms</h3> */}
-          {ROOM_DATA.map((item) => (
-            <RoomItem key={item.id} room={item.room} />
-          ))}
+          <button>
+            Rooms
+            <i class="fa-solid fa-angles-down"></i>
+          </button>
+
+          <div>
+            {ROOM_DATA.map((item) => (
+              <RoomItem key={item.id} room={item.room} />
+            ))}
+          </div>
         </div>
         <div>
           {DUMMY_DATA.map((item) => (

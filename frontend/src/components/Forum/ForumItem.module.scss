@@ -15,8 +15,6 @@ $background-color-grey: #121416;
   }
 
   .author-section {
-    margin-bottom: 0.3rem;
-
     display: flex;
     justify-content: flex-start;
     align-items: center;
@@ -51,10 +49,12 @@ $background-color-grey: #121416;
     }
   }
 
-  p {
+  > p {
     text-align: start;
     margin-left: 2rem;
     padding-bottom: 1rem;
+    padding-right: 1rem;
+    text-align: justify;
   }
 
   .post-review {
@@ -75,6 +75,27 @@ $background-color-grey: #121416;
         background-color: $text-color-white;
         color: $background-color-grey;
         cursor: pointer;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .forumitem {
+    .post-review {
+      display: flex;
+      justify-content: space-around;
+      button {
+        font-size: 14px;
+        font-weight: 300;
+
+        &:hover,
+        &:active {
+          background-color: $text-color-white;
+          color: $background-color-grey;
+        }
+
+        padding: 0.25rem 0.5rem;
       }
     }
   }

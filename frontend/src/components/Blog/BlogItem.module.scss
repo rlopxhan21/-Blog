@@ -30,6 +30,7 @@ $background-color-grey: #121416;
         font-weight: 800;
         font-size: 32px;
         margin-bottom: 1rem;
+        text-align: justify;
       }
 
       .author-section {
@@ -62,7 +63,7 @@ $background-color-grey: #121416;
     }
 
     .middle {
-      text-align: left;
+      text-align: justify;
 
       align-self: flex-start;
       width: 400px;
