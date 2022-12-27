@@ -18,27 +18,52 @@ const MainHeader = () => {
           <div className={classes.navlink}>
             <ul>
               <li>
-                <NavLink activeClassName={classes.active} to="/home">
+                <NavLink
+                  className={(navData) =>
+                    navData.isActive ? classes.active : ""
+                  }
+                  to="home"
+                >
                   Home
                 </NavLink>
               </li>
               <li>
-                <NavLink activeClassName={classes.active} to="/blog">
+                <NavLink
+                  className={(navData) =>
+                    navData.isActive ? classes.active : ""
+                  }
+                  to="/blog"
+                >
                   Blog
                 </NavLink>
               </li>
               <li>
-                <NavLink activeClassName={classes.active} to="/forum">
+                <NavLink
+                  className={(navData) =>
+                    navData.isActive ? classes.active : ""
+                  }
+                  to="/forum"
+                >
                   Forum
                 </NavLink>
               </li>
               <li>
-                <NavLink activeClassName={classes.active} to="/aboutus">
+                <NavLink
+                  className={(navData) =>
+                    navData.isActive ? classes.active : ""
+                  }
+                  to="/aboutus"
+                >
                   About Us
                 </NavLink>
               </li>
               <li>
-                <NavLink activeClassName={classes.active} to="/contactus">
+                <NavLink
+                  className={(navData) =>
+                    navData.isActive ? classes.active : ""
+                  }
+                  to="/contactus"
+                >
                   Contact Us
                 </NavLink>
               </li>
@@ -51,9 +76,8 @@ const MainHeader = () => {
           </Link>
         </div>
         <div className={classes.bars}>
-          <Link>
-            <i class="fa-solid fa-bars"></i>
-          </Link>
+          <i className="fa-solid fa-bars"></i>
+          {false && <i className="fa-solid fa-xmark"></i>}
         </div>
       </div>
     </nav>

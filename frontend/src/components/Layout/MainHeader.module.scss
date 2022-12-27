@@ -43,10 +43,18 @@ $background-color-grey: #121416;
         justify-content: space-between;
         align-items: center;
         gap: 1.5rem;
-      }
 
-      .active {
-        border-bottom: 2px solid $text-color-white;
+        li {
+          border-bottom: 2px solid $background-color-grey;
+
+          &:hover {
+            border-bottom: 2px solid $text-color-white;
+          }
+
+          .active {
+            border-bottom: 2px solid $text-color-white;
+          }
+        }
       }
     }
   }
@@ -96,6 +104,11 @@ $background-color-grey: #121416;
 
     .bars {
       display: block;
+
+      &:hover {
+        cursor: pointer;
+      }
+
       i {
         font-size: 14px;
       }

@@ -7,7 +7,6 @@ import { useSelector } from "react-redux";
 
 const Register = () => {
   const yesLoginForm = useSelector((state) => state.auth.loginForm);
-  console.log(yesLoginForm);
   return (
     <React.Fragment>
       {yesLoginForm && <Login />}

@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Redirect, Route, Switch } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 
 import Layout from "./components/Layout/Layout";
 
@@ -14,29 +14,15 @@ import Register from "./pages/Register";
 function App() {
   return (
     <Layout>
-      <Switch>
-        <Route path="/" exact>
-          <Redirect to="/home"></Redirect>
-        </Route>
-        <Route path="/home">
-          <HomePage />
-        </Route>
-        <Route path="/blog">
-          <BlogPage />
-        </Route>
-        <Route path="/forum">
-          <ForumPage />
-        </Route>
-        <Route path="/aboutus">
-          <AboutUsPage />
-        </Route>
-        <Route path="/contactus">
-          <ContactUsPage />
-        </Route>
-        <Route path="/register">
-          <Register />
-        </Route>
-      </Switch>
+      <Routes>
+        <Route path="/" element={<Navigate to="/home" replace />} />
+        <Route path="/home" element={<HomePage />} />
+        <Route path="/blog" element={<BlogPage />} />
+        <Route path="/forum" element={<ForumPage />} />
+        <Route path="/aboutus" element={<AboutUsPage />} />
+        <Route path="/contactus" element={<ContactUsPage />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
     </Layout>
   );
 }

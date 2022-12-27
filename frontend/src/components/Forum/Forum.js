@@ -12,22 +12,22 @@ const DUMMY_DATA = [
     post: "Lets talk about React!",
   },
   {
-    id: "p1",
+    id: "p2",
     author: "R Lopxhan",
     post: "Lets talk about React!",
   },
   {
-    id: "p1",
+    id: "p3",
     author: "R Lopxhan",
     post: "Lets talk about React!",
   },
   {
-    id: "p1",
+    id: "p4",
     author: "R Lopxhan",
     post: "Lets talk about React!",
   },
   {
-    id: "p1",
+    id: "p5",
     author: "R Lopxhan",
     post: "According to numbers from Statista, the company began the pandemic with approximately 840,000 employees in the first quarter of 2020. By Q1 2022, it had over 1.6 million workers. The problem was, as the pandemic loosened its grip on public life, people stopped buying everything online and returned to brick-and-mortar retail.",
   },
@@ -50,7 +50,7 @@ const Forum = () => {
         <div className={classes.left}>
           <button>
             Rooms
-            <i class="fa-solid fa-angles-down"></i>
+            <i className="fa-solid fa-angles-down"></i>
           </button>
 
           <div>
