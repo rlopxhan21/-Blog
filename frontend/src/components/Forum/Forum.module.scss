@@ -25,10 +25,66 @@ $background-color-grey: #121416;
 
     .middle {
       grid-area: middle;
+      overflow: hidden;
     }
 
     .right {
       grid-area: right;
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  .forum {
+    margin-top: 0;
+    width: 80%;
+    margin-top: 0;
+
+    .container {
+      padding: 0;
+      width: 100%;
+      grid-template-areas:
+        " left "
+        " middle "
+        " right ";
+
+      .left {
+        grid-area: left;
+
+        button {
+          display: block;
+          margin-top: 1rem;
+          width: 100%;
+          padding: 0.25rem 1rem;
+          font-size: 16px;
+          font-weight: 600;
+          border: 1px solid $text-color-white;
+          background-color: $background-color-grey;
+          color: $text-color-white;
+
+          &:hover {
+            cursor: pointer;
+          }
+
+          i {
+            margin-left: 2rem;
+            color: $text-color-white;
+            font-size: 14px;
+          }
+        }
+
+        div {
+          display: none;
+        }
+      }
+      .middle {
+        grid-area: middle;
+      }
+
+      .right {
+        display: none;
+        grid-area: right;
+      }
     }
   }
 }
