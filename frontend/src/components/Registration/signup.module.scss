@@ -96,6 +96,10 @@ $background-color-grey: #121416;
 
     p {
       cursor: pointer;
+
+      &:hover {
+        text-decoration: underline;
+      }
     }
   }
 }

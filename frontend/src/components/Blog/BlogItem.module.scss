@@ -26,6 +26,13 @@ $background-color-grey: #121416;
     .left {
       width: 400px;
       text-align: left;
+
+      .area {
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+
       h3 {
         font-weight: 800;
         font-size: 32px;
@@ -51,6 +58,12 @@ $background-color-grey: #121416;
           }
 
           &:nth-child(2) {
+            .authorname {
+              &:hover {
+                text-decoration: underline;
+              }
+            }
+
             p {
               &:nth-child(2) {
                 margin-top: 0.5rem;

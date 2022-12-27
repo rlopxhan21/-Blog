@@ -41,6 +41,11 @@ $background-color-grey: #121416;
       h4 {
         font-weight: 600;
         font-size: 18px;
+
+        &:hover {
+          text-decoration: underline;
+          cursor: pointer;
+        }
       }
 
       p {
