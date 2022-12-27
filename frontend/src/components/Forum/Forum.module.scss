@@ -3,6 +3,7 @@ $background-color-black: #000000;
 $background-color-grey: #121416;
 
 .forum {
+  min-height: 98vh;
   width: 80%;
   margin: auto;
   margin-top: 4rem;
@@ -12,7 +13,7 @@ $background-color-grey: #121416;
     padding: 2rem 0;
 
     display: grid;
-    grid-template-areas: "left middle middle middle right";
+    grid-template-areas: "left middle right";
     gap: 4rem;
 
     .left {
@@ -25,7 +26,6 @@ $background-color-grey: #121416;
 
     .middle {
       grid-area: middle;
-      overflow: hidden;
     }
 
     .right {
