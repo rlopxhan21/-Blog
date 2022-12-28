@@ -1,0 +1,85 @@
+.forumitem {
+  opacity: 0.7;
+  margin-bottom: 2rem;
+}
+.forumitem:hover {
+  opacity: 1;
+}
+.forumitem:hover .post-review {
+  display: flex;
+}
+.forumitem .author-section {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}
+.forumitem .author-section .author-image {
+  height: 40px;
+  width: 40px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+.forumitem .author-section .author-image img {
+  height: 40px;
+  width: 40px;
+}
+.forumitem .author-section .authordate {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.forumitem .author-section .authordate h4 {
+  font-weight: 600;
+  font-size: 18px;
+}
+.forumitem .author-section .authordate h4:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+.forumitem .author-section .authordate p {
+  font-size: 16px;
+}
+.forumitem > p {
+  text-align: start;
+  margin-left: 2rem;
+  padding-bottom: 1rem;
+  padding-right: 1rem;
+  text-align: justify;
+}
+.forumitem .post-review {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  display: none;
+}
+.forumitem .post-review button {
+  border: 1px solid #a9a9b3;
+  background-color: #121416;
+  color: #a9a9b3;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 0.25rem 1rem;
+}
+.forumitem .post-review button:hover {
+  background-color: #a9a9b3;
+  color: #121416;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 768px) {
+  .forumitem .post-review {
+    display: flex;
+    justify-content: space-around;
+  }
+  .forumitem .post-review button {
+    font-size: 14px;
+    font-weight: 300;
+    padding: 0.25rem 0.5rem;
+  }
+  .forumitem .post-review button:hover, .forumitem .post-review button:active {
+    background-color: #a9a9b3;
+    color: #121416;
+  }
+}/*# sourceMappingURL=ForumItem.module.css.map */

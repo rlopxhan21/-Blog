@@ -4,6 +4,7 @@ from rest_framework import mixins
 from rest_framework import generics
 from rest_framework.exceptions import ValidationError
 
+
 from .models import Room, Post, Comment
 from .serializers import RoomSerializers, PostSerializers, CommentSerializers
 
@@ -11,6 +12,9 @@ from .serializers import RoomSerializers, PostSerializers, CommentSerializers
 class RoomList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = Room.actives.all()
     serializer_class = RoomSerializers
+
+    def perform_create(self, serializer):
+        serializer.save(author_id=self.request.user.id)
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -36,6 +40,9 @@ class RoomDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.Dest
 class PostList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = Post.actives.all()
     serializer_class = PostSerializers
+
+    def perform_create(self, serializer):
+        serializer.save(author_id=self.request.user.id)
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -67,7 +74,7 @@ class CommentList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Gener
 
     def perform_create(self, serializer):
         pk = self.kwargs['pk']
-        serializer.save(post_id=pk)
+        serializer.save(post_id=pk, author_id=self.request.user.id)
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)

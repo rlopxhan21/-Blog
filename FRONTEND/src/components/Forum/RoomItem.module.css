@@ -1,0 +1,12 @@
+.roomitem {
+  margin-bottom: 2rem;
+  padding: 1rem 0.5rem;
+  width: 100%;
+}
+.roomitem:hover {
+  background-color: #a9a9b3;
+}
+.roomitem:hover .room {
+  color: #121416;
+  background-color: #a9a9b3;
+}/*# sourceMappingURL=RoomItem.module.css.map */

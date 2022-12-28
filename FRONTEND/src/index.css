@@ -1,0 +1,32 @@
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #a9a9b3;
+  background-color: #121416;
+  font-family: "K2D", monospace, sans-serif;
+  font-size: 18px;
+  font-weight: 400;
+  position: relative;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New", monospace;
+}
+
+* {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: #a9a9b3;
+}
+
+@media screen and (max-width: 768px) {
+  body {
+    font-weight: 300;
+  }
+}/*# sourceMappingURL=index.css.map */

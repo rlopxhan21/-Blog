@@ -1,0 +1,20 @@
+.blog {
+  width: 80%;
+  margin: auto;
+  text-align: center;
+}
+.blog .container {
+  padding: 2rem 0;
+}
+.blog .container h1 {
+  margin-bottom: 1rem;
+}
+
+@media screen and (max-width: 768px) {
+  .blog {
+    width: 95%;
+  }
+  .blog .container h1 {
+    display: none;
+  }
+}/*# sourceMappingURL=Blog.module.css.map */
