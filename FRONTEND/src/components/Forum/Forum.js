@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
 import classes from "./Forum.module.scss";
 
@@ -44,6 +44,25 @@ const ROOM_DATA = [
 ];
 
 const Forum = () => {
+  const fetchForumData = useCallback(async () => {
+    try {
+      const response = await fetch("http://127.0.0.1:8000/forum/post/");
+
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
+      }
+
+      const data = await response.json();
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+    }
+  });
+
+  useEffect(() => {
+    fetchForumData();
+  }, [fetchForumData]);
+
   return (
     <div className={classes.forum}>
       <div className={classes.container}>
