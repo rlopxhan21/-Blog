@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useEffect } from "react";
 
 import classes from "./Forum.module.scss";
 
@@ -46,10 +46,15 @@ const ROOM_DATA = [
 const Forum = () => {
   const fetchForumData = useCallback(async () => {
     try {
-      const response = await fetch("http://127.0.0.1:8000/forum/post/");
+      const response = await fetch("http://127.0.0.1:8000/forum/post", {
+        method: "GET",
+        // headers: {
+        //   "Access-Control-Allow-Origin": "Origin-List",
+        // },
+      });
 
       if (!response.ok) {
-        throw new Error("Something went wrong!");
+        throw new Error(response.json().error);
       }
 
       const data = await response.json();
@@ -57,7 +62,7 @@ const Forum = () => {
     } catch (error) {
       console.log(error);
     }
-  });
+  }, []);
 
   useEffect(() => {
     fetchForumData();
