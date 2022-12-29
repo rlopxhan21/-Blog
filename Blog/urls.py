@@ -9,3 +9,7 @@ urlpatterns = [
     path('forum/', include('forumapp.urls', namespace='forumapp')),
     path('api/', include('useraccount.urls')),
 ]
+
+urlpatterns.extend(
+    [path('ckeditor/', include('ckeditor_uploader.urls')),]
+)

@@ -2,6 +2,7 @@ from django.db import models
 from django.utils.text import slugify
 
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
 
 
 class ActiveManager(models.Manager):
@@ -30,7 +31,7 @@ class BlogRoom(models.Model):
 
 class Blog(models.Model):
     title = models.CharField(max_length=1024);
-    content = models.TextField()
+    content = RichTextField()
     blogroom = models.ManyToManyField(
         BlogRoom, related_name='blogroom_blog')
     author = models.ForeignKey(

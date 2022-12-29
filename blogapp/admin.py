@@ -1,5 +1,6 @@
 from django.contrib import admin
 from .models import BlogRoom, Blog, Comment
+from ckeditor.widgets import CKEditorWidget
 
 
 @admin.register(BlogRoom)
@@ -13,6 +14,9 @@ class BlogRoomAdmin(admin.ModelAdmin):
 
 @admin.register(Blog)
 class PostAdmin(admin.ModelAdmin):
+    formfield_overrides = {
+        Blog.content: {'widget': CKEditorWidget},
+    }
     list_display = ['content', 'author',
                     'created', 'updated', 'active']
     list_filter = ['active', 'updated']
