@@ -1,8 +1,7 @@
 from rest_framework.response import Response
-from rest_framework import status
 from rest_framework import mixins
 from rest_framework import generics
-from rest_framework.exceptions import ValidationError
+from .pagination import StandardPagination
 
 
 from .models import Room, Post, Comment
@@ -12,6 +11,7 @@ from .serializers import RoomSerializers, PostSerializers, CommentSerializers
 class RoomList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = Room.actives.all()
     serializer_class = RoomSerializers
+    pagination_class = StandardPagination
 
     def perform_create(self, serializer):
         serializer.save(author_id=self.request.user.id)

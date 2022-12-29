@@ -27,3 +27,15 @@ class RegisterAPI(mixins.CreateModelMixin, generics.GenericAPIView):
             return Response(response_data, status=status.HTTP_201_CREATED)
         
         return Response(serializer.error, status=status.HTTP_400_BAD_REQUEST)
+    
+
+class LogoutAPI(mixins.CreateModelMixin, generics.GenericAPIView):
+    def post(self, request, *args, **kwargs):
+        try: 
+            refresh_token = request.data.get('refresh_token')
+            token_obj = RefreshToken(refresh_token)
+            token_obj.blacklist()
+            
+            return Response(status=status.HTTP_200_OK)         
+        except:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
