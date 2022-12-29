@@ -1,17 +1,12 @@
-$text-color-white: #a9a9b3;
-$background-color-black: #000000;
-$background-color-grey: #121416;
+@import "../../extra";
 
-.roomitem {
+.room {
   margin-bottom: 2rem;
   padding: 1rem 0.5rem;
   width: 100%;
 
   &:hover {
+    color: $background-color-grey;
     background-color: $text-color-white;
-    .room {
-      color: $background-color-grey;
-      background-color: $text-color-white;
-    }
   }
 }

@@ -42,7 +42,7 @@ class Post(models.Model):
     actives = ActiveManager()
 
     class Meta:
-        ordering = ['-updated']
+        ordering = ['updated']
         indexes = [
             models.Index(fields=['-updated'])
         ]

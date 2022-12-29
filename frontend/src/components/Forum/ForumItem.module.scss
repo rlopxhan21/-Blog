@@ -1,24 +1,14 @@
-$text-color-white: #a9a9b3;
-$background-color-black: #000000;
-$background-color-grey: #121416;
+@import "../../extra";
 
 .forumitem {
-  opacity: 0.7;
   margin-bottom: 2rem;
 
-  &:hover {
-    opacity: 1;
-
-    .post-review {
-      display: flex;
-    }
-  }
-
   .author-section {
+    margin-bottom: 0.5rem;
+
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
-    gap: 1rem;
 
     .author-image {
       height: 40px;
@@ -32,18 +22,36 @@ $background-color-grey: #121416;
       }
     }
 
-    .authordate {
+    .authorright {
       display: flex;
-      flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
       justify-content: space-between;
+      gap: 1rem;
 
       h4 {
-        font-weight: 600;
+        font-weight: 800;
         font-size: 18px;
+        // margin-bottom: 0.125rem;
 
         &:hover {
           text-decoration: underline;
+          cursor: pointer;
+        }
+      }
+
+      button {
+        border: none;
+        color: $text-color-white;
+        background-color: $background-color-grey;
+        padding: 0.125rem 0.25rem;
+        font-size: 16px;
+        font-family: "K2D", monospace;
+        font-weight: 600;
+        text-decoration: underline;
+
+        &:hover {
+          background-color: $text-color-white;
+          color: $background-color-grey;
           cursor: pointer;
         }
       }
@@ -60,27 +68,52 @@ $background-color-grey: #121416;
     padding-bottom: 1rem;
     padding-right: 1rem;
     text-align: justify;
+    color: $text-color-lightwhite;
   }
 
   .post-review {
     display: flex;
-    justify-content: space-evenly;
+    justify-content: flex-start;
     align-items: center;
-    display: none;
+    gap: 1rem;
+
+    margin-bottom: 1rem;
     button {
-      border: 1px solid $text-color-white;
+      border: none;
       background-color: $background-color-grey;
       color: $text-color-white;
       font-size: 16px;
       font-weight: 600;
       padding: 0.25rem 1rem;
 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+
       &:hover {
         background-color: $text-color-white;
         color: $background-color-grey;
         cursor: pointer;
+
+        div {
+          svg {
+            stroke: $background-color-black;
+            fill: $text-color-white;
+          }
+        }
+      }
+
+      div {
+        svg {
+          stroke: $text-color-white;
+        }
       }
     }
+  }
+
+  hr {
+    border: 1px dashed $background-color-darkgrey;
   }
 }
 

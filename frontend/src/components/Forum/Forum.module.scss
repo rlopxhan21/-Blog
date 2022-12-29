@@ -1,6 +1,4 @@
-$text-color-white: #a9a9b3;
-$background-color-black: #000000;
-$background-color-grey: #121416;
+@import "../../extra";
 
 .forum {
   min-height: 98vh;
@@ -21,6 +19,13 @@ $background-color-grey: #121416;
 
       button {
         display: none;
+      }
+
+      div {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
       }
     }
 

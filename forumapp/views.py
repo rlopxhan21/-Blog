@@ -11,7 +11,7 @@ from .serializers import RoomSerializers, PostSerializers, CommentSerializers
 class RoomList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = Room.actives.all()
     serializer_class = RoomSerializers
-    pagination_class = StandardPagination
+    # pagination_class = StandardPagination
 
     def perform_create(self, serializer):
         serializer.save(author_id=self.request.user.id)
