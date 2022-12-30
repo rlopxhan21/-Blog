@@ -6,6 +6,9 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 
 
+class UserprofileAPI(mixins.ListModelMixin, generics.GenericAPIView):
+    pass
+
 
 class RegisterAPI(mixins.CreateModelMixin, generics.GenericAPIView):
     serializer_class  = RegistrationSerializer
@@ -21,7 +24,8 @@ class RegisterAPI(mixins.CreateModelMixin, generics.GenericAPIView):
             
             response_data = {
                 'refresh': str(refresh),
-                'access': str(refresh.access_token)
+                'access': str(refresh.access_token),
+                'user': serializer.data
             }
             
             return Response(response_data, status=status.HTTP_201_CREATED)
@@ -39,3 +43,4 @@ class LogoutAPI(mixins.CreateModelMixin, generics.GenericAPIView):
             return Response(status=status.HTTP_200_OK)         
         except:
             return Response(status=status.HTTP_400_BAD_REQUEST)
+        

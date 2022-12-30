@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 
 import { NavLink, Link } from "react-router-dom";
 
 import classes from "./MainHeader.module.scss";
 
 const MainHeader = () => {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const [toggleBar, setToggleBar] = useState(true);
 
   const onToggleHandler = () => {
@@ -83,9 +85,16 @@ const MainHeader = () => {
           }
         </div>
         <div className={classes.right}>
-          <Link to="/register" replace>
-            Login/ Sign Up
-          </Link>
+          {isLoggedIn && (
+            <Link to="/profile" replace>
+              Name
+            </Link>
+          )}
+          {!isLoggedIn && (
+            <Link to="/register" replace>
+              Login/ Sign Up
+            </Link>
+          )}
         </div>
         <div className={classes.bars}>
           {toggleBar && (
