@@ -14,8 +14,11 @@ class CommentSerializers(serializers.ModelSerializer):
 class BlogSerializers(serializers.ModelSerializer):
     author = serializers.StringRelatedField(read_only=True)
     blog_comment = CommentSerializers(many=True, read_only=True)
-    author_name = serializers.CharField(
-        source='author.username', read_only=True)
+    author_fname = serializers.CharField(
+        source='author.first_name', read_only=True)
+    author_lname = serializers.CharField(
+        source='author.last_name', read_only=True)
+    blogroom = serializers.StringRelatedField(read_only=True)
 
     class Meta:
         model = Blog

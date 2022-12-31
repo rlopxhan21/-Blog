@@ -3,6 +3,10 @@
 .forumitem {
   margin-bottom: 2rem;
 
+  &:hover {
+    transform: scale(1.025);
+  }
+
   .author-section {
     margin-bottom: 0.5rem;
 
@@ -31,7 +35,6 @@
       h4 {
         font-weight: 800;
         font-size: 18px;
-        // margin-bottom: 0.125rem;
 
         &:hover {
           text-decoration: underline;
@@ -50,8 +53,8 @@
         text-decoration: underline;
 
         &:hover {
-          background-color: $text-color-white;
-          color: $background-color-grey;
+          background-color: $background-color-red;
+          // color: $background-color-grey;
           cursor: pointer;
         }
       }

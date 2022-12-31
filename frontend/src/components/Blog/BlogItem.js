@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import classes from "./BlogItem.module.scss";
 
 const BlogItem = (props) => {
+  const dateValue = new Date(props.published_date).toDateString();
   return (
     <div className={classes.blogitem}>
       <article>
@@ -19,9 +20,9 @@ const BlogItem = (props) => {
             </div>
             <div>
               <Link to="/" className={classes.authorname}>
-                {props.author}
+                {props.author_fname} {props.author_lname}
               </Link>
-              <p>7{props.published_date}</p>
+              <p>{dateValue}</p>
             </div>
           </div>
         </div>

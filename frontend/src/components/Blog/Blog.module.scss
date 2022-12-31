@@ -2,23 +2,12 @@
   width: 80%;
   margin: auto;
   text-align: center;
-
-  .container {
-    padding: 2rem 0;
-
-    h1 {
-      margin-bottom: 1rem;
-    }
-  }
 }
 
 @media screen and (max-width: 768px) {
   .blog {
     width: 95%;
     .container {
-      h1 {
-        display: none;
-      }
     }
   }
 }

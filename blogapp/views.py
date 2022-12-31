@@ -11,7 +11,7 @@ from .serializers import BlogRoomSerializers, BlogSerializers, CommentSerializer
 class BlogRoomList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = BlogRoom.actives.all()
     serializer_class = BlogRoomSerializers
-    pagination_class = StandardPagination
+    # pagination_class = StandardPagination
 
     def perform_create(self, serializer):
         serializer.save(author_id=self.request.user.id)

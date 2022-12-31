@@ -32,8 +32,8 @@ class BlogRoom(models.Model):
 class Blog(models.Model):
     title = models.CharField(max_length=1024);
     content = RichTextField()
-    blogroom = models.ManyToManyField(
-        BlogRoom, related_name='blogroom_blog')
+    blogroom = models.ForeignKey(
+        BlogRoom, on_delete=models.CASCADE,related_name='blogroom_blog')
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='author_blog')
     created = models.DateField(auto_now_add=True)

@@ -1,4 +1,4 @@
-from .serializers import RegistrationSerializer
+from .serializers import RegistrationSerializer, UserprofileSerializer
 
 from django.contrib.auth.models import User
 from rest_framework import generics, mixins, permissions, status
@@ -7,8 +7,12 @@ from rest_framework_simplejwt.tokens import RefreshToken
 
 
 class UserprofileAPI(mixins.ListModelMixin, generics.GenericAPIView):
-    pass
-
+    serializer_class = UserprofileSerializer
+    queryset = User.objects.all()
+    
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, *kwargs)
+    
 
 class RegisterAPI(mixins.CreateModelMixin, generics.GenericAPIView):
     serializer_class  = RegistrationSerializer
