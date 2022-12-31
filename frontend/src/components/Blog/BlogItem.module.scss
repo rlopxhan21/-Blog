@@ -31,6 +31,10 @@
         font-size: 32px;
         margin-bottom: 1rem;
         text-align: justify;
+
+        &:hover {
+          color: $text-color-lightwhite;
+        }
       }
 
       .author-section {
@@ -73,6 +77,11 @@
 
       align-self: flex-start;
       width: 400px;
+      p {
+        &:hover {
+          color: $text-color-lightwhite;
+        }
+      }
     }
 
     .right {

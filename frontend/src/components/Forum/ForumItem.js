@@ -1,6 +1,11 @@
+import moment from "moment";
+import { Link } from "react-router-dom";
+
 import classes from "./ForumItem.module.scss";
 
 const ForumItem = (props) => {
+  const dateTimeAgo = moment(new Date(props.published_date)).fromNow();
+
   return (
     <div className={classes.forumitem}>
       <div className={classes["author-section"]}>
@@ -9,17 +14,21 @@ const ForumItem = (props) => {
             <img src={require("../../assets/images/profile.jpg")} alt={""} />
           </div>
           <div>
-            <h4>
-              {props.author_fname} {props.author_lname}
-            </h4>
+            <Link to="/">
+              <h4>
+                {props.author_fname} {props.author_lname}
+              </h4>
+            </Link>
             <button>Content Creator</button>
           </div>
         </div>
         <div>
-          <p>Dec 2020</p>
+          <p>{dateTimeAgo}</p>
         </div>
       </div>
-      <p>{props.post.substring(0, 1000)}</p>
+      <Link to={`/forum/${props.pk}`} className={classes.postcontent}>
+        <p>{props.post.substring(0, 1000)}</p>
+      </Link>
       <div className={classes["post-review"]}>
         <button>
           <div>

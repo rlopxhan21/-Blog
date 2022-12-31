@@ -54,7 +54,6 @@
 
         &:hover {
           background-color: $background-color-red;
-          // color: $background-color-grey;
           cursor: pointer;
         }
       }
@@ -65,7 +64,7 @@
     }
   }
 
-  > p {
+  .postcontent {
     text-align: start;
     margin-left: 2rem;
     padding-bottom: 1rem;

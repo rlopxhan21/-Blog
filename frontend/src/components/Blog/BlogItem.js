@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
+import moment from "moment";
 
 import classes from "./BlogItem.module.scss";
 
 const BlogItem = (props) => {
-  const dateValue = new Date(props.published_date).toDateString();
+  const dateTimeAgo = moment(new Date(props.published_date)).fromNow();
+
   return (
     <div className={classes.blogitem}>
       <article>
@@ -11,7 +13,7 @@ const BlogItem = (props) => {
           <Link to="/" className={classes.area}>
             <p>{props.area}</p>
           </Link>
-          <Link to="/">
+          <Link to={`/blog/${props.pk}`}>
             <h3>{props.topic.substring(0, 75)}</h3>
           </Link>
           <div className={classes["author-section"]}>
@@ -22,12 +24,12 @@ const BlogItem = (props) => {
               <Link to="/" className={classes.authorname}>
                 {props.author_fname} {props.author_lname}
               </Link>
-              <p>{dateValue}</p>
+              <p>{dateTimeAgo}</p>
             </div>
           </div>
         </div>
         <div className={classes.middle}>
-          <Link to="/">
+          <Link to={`/blog/${props.pk}`}>
             <p>{props.content.substring(0, 400)}</p>
           </Link>
         </div>

@@ -30,21 +30,21 @@ class BlogRoom(models.Model):
 
 
 class Blog(models.Model):
-    title = models.CharField(max_length=1024);
+    title = models.CharField(max_length=1024)
     content = RichTextField()
     blogroom = models.ForeignKey(
-        BlogRoom, on_delete=models.CASCADE,related_name='blogroom_blog')
+        BlogRoom, on_delete=models.CASCADE, related_name='blogroom_blog')
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='author_blog')
-    created = models.DateField(auto_now_add=True)
-    updated = models.DateField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
 
     objects = models.Manager()
     actives = ActiveManager()
 
     class Meta:
-        ordering = ['-updated']
+        ordering = ['-created', '-updated']
         indexes = [
             models.Index(fields=['-updated'])
         ]
@@ -59,8 +59,8 @@ class Comment(models.Model):
         User, on_delete=models.CASCADE, related_name='author_blogcomment')
     blog = models.ForeignKey(
         Blog, on_delete=models.CASCADE, related_name='post_blogcomment')
-    created = models.DateField(auto_now_add=True)
-    updated = models.DateField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
 
     objects = models.Manager()

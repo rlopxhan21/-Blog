@@ -10,6 +10,8 @@ import ForumPage from "./pages/ForumPage";
 import AboutUsPage from "./pages/AboutUs";
 import ContactUsPage from "./pages/ContactUs";
 import Register from "./pages/Register";
+import BlogDetail from "./pages/BlogDetail";
+import ForumDetail from "./pages/ForumDetail";
 
 function App() {
   return (
@@ -18,7 +20,9 @@ function App() {
         <Route path="/" element={<Navigate to="/home" replace />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/blog" element={<BlogPage />} />
+        <Route path="blog/:blogid" element={<BlogDetail />} />
         <Route path="/forum" element={<ForumPage />} />
+        <Route path="forum/:forumid" element={<ForumDetail />} />
         <Route path="/aboutus" element={<AboutUsPage />} />
         <Route path="/contactus" element={<ContactUsPage />} />
         <Route path="/register" element={<Register />} />

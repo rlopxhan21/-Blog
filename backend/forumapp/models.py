@@ -34,8 +34,8 @@ class Post(models.Model):
         Room, related_name='room_post')
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='author_post')
-    created = models.DateField(auto_now_add=True)
-    updated = models.DateField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
 
     objects = models.Manager()
@@ -57,8 +57,8 @@ class Comment(models.Model):
         User, on_delete=models.CASCADE, related_name='author_comment')
     post = models.ForeignKey(
         Post, on_delete=models.CASCADE, related_name='post_comment')
-    created = models.DateField(auto_now_add=True)
-    updated = models.DateField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
 
     objects = models.Manager()

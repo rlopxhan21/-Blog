@@ -3,9 +3,13 @@ import { useSelector } from "react-redux";
 import classes from "./Blog.module.scss";
 
 import BlogItem from "./BlogItem";
-
+import NoBlogFound from "../UI/NoBlogFound";
 const Blog = () => {
   const BLOG_DATA = useSelector((state) => state.data.blog_data);
+
+  if (BLOG_DATA.length === 0) {
+    return <NoBlogFound>No Blog Post Available.</NoBlogFound>;
+  }
 
   return (
     <div className={classes.blog}>
@@ -14,6 +18,7 @@ const Blog = () => {
           {BLOG_DATA.map((item) => (
             <BlogItem
               key={item.id}
+              pk={item.id}
               area={item.blogroom}
               topic={item.title}
               author_fname={item.author_fname}
