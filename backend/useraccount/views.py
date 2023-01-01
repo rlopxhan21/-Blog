@@ -51,7 +51,6 @@ class RegisterAPI(mixins.CreateModelMixin, generics.GenericAPIView):
             response_data = {
                 'refresh': str(refresh),
                 'access': str(refresh.access_token),
-                'user': serializer.data
             }
 
             return Response(response_data, status=status.HTTP_201_CREATED)

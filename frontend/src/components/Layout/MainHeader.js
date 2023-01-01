@@ -1,16 +1,24 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 
 import { NavLink, Link } from "react-router-dom";
 
 import classes from "./MainHeader.module.scss";
+import { authActions } from "../../store/auth";
 
 const MainHeader = () => {
+  const dispatch = useDispatch();
+
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const userInfo = useSelector((state) => state.auth.userInfo);
   const [toggleBar, setToggleBar] = useState(true);
 
   const onToggleHandler = () => {
     setToggleBar((prevState) => !prevState);
+  };
+
+  const onLogoutHandler = () => {
+    dispatch(authActions.logoutUserHandler());
   };
 
   return (
@@ -87,9 +95,10 @@ const MainHeader = () => {
         <div className={classes.right}>
           {isLoggedIn && (
             <Link to="/profile" replace>
-              Name
+              {userInfo.fname} {userInfo.lname}
             </Link>
           )}
+          {isLoggedIn && <p onClick={onLogoutHandler}>Logout</p>}
           {!isLoggedIn && (
             <Link to="/register" replace>
               Login/ Sign Up

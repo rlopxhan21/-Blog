@@ -1,8 +1,12 @@
-import React from "react";
-
-import { Route, Routes, Navigate } from "react-router-dom";
+import React, { useState, useEffect, useCallback } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Route, Routes, Navigate, Link } from "react-router-dom";
+import jwt_decode from "jwt-decode";
+import axios from "axios";
 
 import Layout from "./components/Layout/Layout";
+
+import { authActions } from "./store/auth";
 
 import HomePage from "./pages/HomePage";
 import BlogPage from "./pages/BlogPage";
@@ -13,8 +17,56 @@ import Register from "./pages/Register";
 import BlogDetail from "./pages/BlogDetail";
 import ForumDetail from "./pages/ForumDetail";
 import ForumSubmitPage from "./pages/ForumSubmitPage";
+import NoBlogFound from "./components/UI/NoBlogFound";
 
 function App() {
+  const dispatch = useDispatch();
+  const authToken = useSelector((state) => state.auth.authTokens);
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
+  const [loading, setLoading] = useState(true);
+
+  const updatedToken = useCallback(async () => {
+    try {
+      const response = await axios({
+        method: "POST",
+        url: "http://127.0.0.1:8000/api/refresh/",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        data: {
+          refresh: authToken.refresh,
+        },
+      });
+
+      dispatch(
+        authActions.loginUserHandler({
+          token: response.data,
+          access: jwt_decode(response.data.access),
+        })
+      );
+    } catch (error) {
+      dispatch(authActions.logoutUserHandler());
+    }
+  }, [dispatch, authToken]);
+
+  useEffect(() => {
+    let fourminutes = 1000 * 60 * 4;
+
+    if (loading) {
+      updatedToken();
+    }
+    setLoading(false);
+
+    const interval = setInterval(() => {
+      if (authToken) {
+        updatedToken();
+      }
+    }, fourminutes);
+
+    return () => clearInterval(interval);
+  }, [authToken, loading, updatedToken]);
+
   return (
     <Layout>
       <Routes>
@@ -24,10 +76,12 @@ function App() {
         <Route path="blog/:blogid" element={<BlogDetail />} />
         <Route path="/forum" element={<ForumPage />} />
         <Route path="forum/:forumid" element={<ForumDetail />} />
-        <Route path="/forum/submit" element={<ForumSubmitPage />} />
+        {isLoggedIn && (
+          <Route path="/forum/submit" element={<ForumSubmitPage />} />
+        )}
         <Route path="/aboutus" element={<AboutUsPage />} />
         <Route path="/contactus" element={<ContactUsPage />} />
-        <Route path="/register" element={<Register />} />
+        {!isLoggedIn && <Route path="/register" element={<Register />} />}
       </Routes>
     </Layout>
   );
