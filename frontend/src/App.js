@@ -12,6 +12,7 @@ import ContactUsPage from "./pages/ContactUs";
 import Register from "./pages/Register";
 import BlogDetail from "./pages/BlogDetail";
 import ForumDetail from "./pages/ForumDetail";
+import ForumSubmitPage from "./pages/ForumSubmitPage";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Route path="blog/:blogid" element={<BlogDetail />} />
         <Route path="/forum" element={<ForumPage />} />
         <Route path="forum/:forumid" element={<ForumDetail />} />
+        <Route path="/forum/submit" element={<ForumSubmitPage />} />
         <Route path="/aboutus" element={<AboutUsPage />} />
         <Route path="/contactus" element={<ContactUsPage />} />
         <Route path="/register" element={<Register />} />

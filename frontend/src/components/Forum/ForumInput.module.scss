@@ -1,0 +1,42 @@
+@import "../../extra";
+
+.foruminput {
+  margin: auto;
+  margin-bottom: 4rem;
+
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 10fr;
+    align-items: center;
+    gap: 1rem;
+
+    div {
+      :nth-child(1) {
+        height: 50px;
+        width: 50px;
+        border-radius: 50%;
+
+        img {
+          width: 50px;
+        }
+      }
+    }
+    .createpost {
+      button {
+        text-align: start;
+        border: none;
+        width: 100%;
+        background-color: $background-color-black;
+        border: 1px solid $text-color-white;
+        color: $text-color-white;
+        padding: 0.75rem 5rem;
+        padding-left: 0.5rem;
+        border-radius: 5px;
+        &:hover {
+          cursor: text;
+          outline: auto;
+        }
+      }
+    }
+  }
+}

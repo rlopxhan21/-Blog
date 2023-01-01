@@ -6,10 +6,13 @@ import classes from "./Forum.module.scss";
 import ForumItem from "./ForumItem";
 import RoomItem from "./RoomItem";
 import NoBlogFound from "../UI/NoBlogFound";
+import ForumInput from "./ForumInput";
 
 const Forum = () => {
   const POST_DATA = useSelector((state) => state.data.post_data);
   const ROOM_DATA = useSelector((state) => state.data.room_data);
+
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   if (POST_DATA.length === 0) {
     return <NoBlogFound>No Post Available.</NoBlogFound>;
@@ -31,6 +34,8 @@ const Forum = () => {
           </div>
         </div>
         <div>
+          {isLoggedIn && <ForumInput />}
+
           {POST_DATA.map((item) => (
             <ForumItem
               key={item.id}
