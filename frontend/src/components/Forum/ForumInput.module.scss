@@ -34,7 +34,7 @@
         border-radius: 5px;
         &:hover {
           cursor: text;
-          outline: auto;
+          border: 3px solid $text-color-white;
         }
       }
     }

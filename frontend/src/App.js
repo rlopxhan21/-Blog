@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Route, Routes, Navigate, Link } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
 import jwt_decode from "jwt-decode";
 import axios from "axios";
 
@@ -17,7 +17,6 @@ import Register from "./pages/Register";
 import BlogDetail from "./pages/BlogDetail";
 import ForumDetail from "./pages/ForumDetail";
 import ForumSubmitPage from "./pages/ForumSubmitPage";
-import NoBlogFound from "./components/UI/NoBlogFound";
 
 function App() {
   const dispatch = useDispatch();
@@ -39,6 +38,8 @@ function App() {
         },
       });
 
+      console.log(authToken.refresh);
+
       dispatch(
         authActions.loginUserHandler({
           token: response.data,
@@ -46,12 +47,12 @@ function App() {
         })
       );
     } catch (error) {
-      dispatch(authActions.logoutUserHandler());
+      // dispatch(authActions.logoutUserHandler());
     }
   }, [dispatch, authToken]);
 
   useEffect(() => {
-    let fourminutes = 1000 * 60 * 4;
+    const fourminutes = 1000 * 60 * 4;
 
     if (loading) {
       updatedToken();

@@ -4,7 +4,9 @@
   margin-bottom: 2rem;
 
   &:hover {
-    transform: scale(1.025);
+    hr {
+      border: 1px solid $text-color-white;
+    }
   }
 
   .author-section {

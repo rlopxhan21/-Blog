@@ -1,0 +1,39 @@
+@import "../../extra";
+
+.commentdata {
+  width: 100%;
+  margin-bottom: 3rem;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+
+  .left {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+
+    .imagesection {
+      height: 40px;
+      width: 40px;
+
+      img {
+        width: 40px;
+        border-radius: 50%;
+      }
+    }
+
+    .authorsection {
+      .name {
+        color: red;
+        font-weight: 800;
+      }
+    }
+  }
+
+  .content {
+    width: 70%;
+  }
+}

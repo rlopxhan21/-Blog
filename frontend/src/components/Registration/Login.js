@@ -20,8 +20,6 @@ const Login = () => {
 
     const loginUser = async () => {
       try {
-        navigate("/home");
-
         const response = await axios({
           method: "POST",
           url: "http://127.0.0.1:8000/api/login/",
@@ -33,6 +31,7 @@ const Login = () => {
             password: enteredPassword,
           },
         });
+        navigate("/home");
 
         dispatch(
           authActions.loginUserHandler({
