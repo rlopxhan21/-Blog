@@ -11,7 +11,9 @@ const ForumItem = (props) => {
       <div className={classes["author-section"]}>
         <div className={classes.authorright}>
           <div className={classes["author-image"]}>
-            <img src={require("../../assets/images/profile.jpg")} alt={""} />
+            <Link to="/profiles">
+              <img src={require("../../assets/images/profile.jpg")} alt={""} />
+            </Link>
           </div>
           <div>
             <Link to="/">

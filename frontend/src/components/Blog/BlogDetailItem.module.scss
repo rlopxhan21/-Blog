@@ -87,6 +87,46 @@
           font-weight: 200;
         }
       }
+      .addcomment {
+        width: 100%;
+        .commentform {
+          width: 100%;
+
+          .commentinput {
+            width: 80%;
+
+            padding: 0.5rem 1rem;
+            border: 1px solid $text-color-white;
+            background-color: $background-color-grey;
+            color: $text-color-white;
+
+            &:focus {
+              outline: none;
+            }
+          }
+
+          .commentbutton {
+            margin-left: 2%;
+            width: 18%;
+
+            padding: 0.5rem 2rem;
+            background-color: $background-color-grey;
+            color: $text-color-white;
+            border: 1px solid $text-color-white;
+            font-weight: 600;
+
+            &:hover {
+              cursor: pointer;
+              background-color: $text-color-white;
+              color: $background-color-grey;
+            }
+          }
+        }
+      }
+
+      .commentdata {
+        width: 80%;
+      }
     }
     .authorpost {
       text-align: center;

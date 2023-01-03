@@ -17,6 +17,7 @@ import Register from "./pages/Register";
 import BlogDetail from "./pages/BlogDetail";
 import ForumDetail from "./pages/ForumDetail";
 import ForumSubmitPage from "./pages/ForumSubmitPage";
+import BlogSubmitPage from "./pages/BlogSubmitPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -47,7 +48,7 @@ function App() {
         })
       );
     } catch (error) {
-      // dispatch(authActions.logoutUserHandler());
+      dispatch(authActions.logoutUserHandler());
     }
   }, [dispatch, authToken]);
 
@@ -75,6 +76,9 @@ function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/blog" element={<BlogPage />} />
         <Route path="blog/:blogid" element={<BlogDetail />} />
+        {isLoggedIn && (
+          <Route path="/blog/submit" element={<BlogSubmitPage />} />
+        )}
         <Route path="/forum" element={<ForumPage />} />
         <Route path="forum/:forumid" element={<ForumDetail />} />
         {isLoggedIn && (

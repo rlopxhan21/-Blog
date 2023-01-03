@@ -5,6 +5,7 @@ const initialState = {
   post_comment: [],
   room_data: [],
   blog_data: [],
+  blog_comment: [],
   blogroom_data: [],
 };
 
@@ -27,6 +28,9 @@ const dataSlice = createSlice({
     },
     updateBlogRoom(state, action) {
       state.blogroom_data = action.payload.blogroom_data;
+    },
+    updateBlogComment(state, action) {
+      state.blog_comment = action.payload;
     },
   },
 });

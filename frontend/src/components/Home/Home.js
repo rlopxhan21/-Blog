@@ -4,10 +4,10 @@ const Home = () => {
   return (
     <div className={classes.home}>
       <div className={classes.container}>
-        <h1>Blog on Software Development</h1>
+        <h1>Blogging Community For Developers, & People In Tech</h1>
         <p>
-          A blog from seasoned SRE writing on topics like automation,
-          observability, reliability, containerisation and orchestration etc.
+          Start a blog for free instantly and share your ideas with people in
+          tech, developers, and engineers.
         </p>
         <div className={classes["social-links"]}>
           <a

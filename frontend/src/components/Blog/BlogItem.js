@@ -18,7 +18,12 @@ const BlogItem = (props) => {
           </Link>
           <div className={classes["author-section"]}>
             <div>
-              <img src={require("../../assets/images/profile.jpg")} alt={""} />
+              <Link to="/profile">
+                <img
+                  src={require("../../assets/images/profile.jpg")}
+                  alt={""}
+                />
+              </Link>
             </div>
             <div>
               <Link to="/" className={classes.authorname}>

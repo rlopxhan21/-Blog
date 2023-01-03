@@ -22,7 +22,8 @@ class BlogSerializers(serializers.ModelSerializer):
         source='author.first_name', read_only=True)
     author_lname = serializers.CharField(
         source='author.last_name', read_only=True)
-    blogroom = serializers.StringRelatedField(read_only=True)
+    blogroom_name = serializers.CharField(
+        source='blogroom.name', read_only=True)
 
     class Meta:
         model = Blog

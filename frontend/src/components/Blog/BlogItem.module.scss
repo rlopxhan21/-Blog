@@ -3,9 +3,10 @@
 .blogitem {
   padding: 2rem 0;
   overflow: hidden;
-
   &:hover {
-    transform: scale(1.025);
+    hr {
+      border: 1px solid $text-color-white;
+    }
   }
 
   article {
@@ -130,6 +131,7 @@
       div {
         svg {
           stroke: $text-color-white;
+          fill: $background-color-grey;
         }
       }
     }
