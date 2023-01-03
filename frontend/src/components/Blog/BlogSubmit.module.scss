@@ -19,7 +19,20 @@
       justify-content: space-between;
       gap: 2rem;
 
-      .dropdown {
+      .blogtitle {
+        width: 100%;
+
+        .inputtitle {
+          width: 100%;
+          background-color: $background-color-grey;
+          color: $text-color-white;
+          border: 1px solid $text-color-white;
+          padding: 0.5rem 1rem;
+
+          &:focus {
+            outline: none;
+          }
+        }
       }
 
       .textarea {

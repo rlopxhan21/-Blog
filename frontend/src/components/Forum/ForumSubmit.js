@@ -50,6 +50,7 @@ const ForumSubmit = () => {
         <form onSubmit={onSubmitHandler} className={classes.roomform}>
           <div className={classes.dropdown}>
             <fieldset className="language">
+              <legend>Select a Room:</legend>
               {ROOM_DATA.map((item) => (
                 <div>
                   <input

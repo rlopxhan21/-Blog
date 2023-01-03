@@ -52,6 +52,7 @@ const BlogSubmit = () => {
         <form onSubmit={onSubmitHandler} className={classes.roomform}>
           <div className={classes.dropdown}>
             <fieldset className="language">
+              <legend>Select a Room:</legend>
               {BLOGROOM_DATA.map((item) => (
                 <div key={item.id}>
                   <input name="room" type="radio" value={item.id} />
@@ -61,12 +62,17 @@ const BlogSubmit = () => {
             </fieldset>
           </div>
           <div className={classes.blogtitle}>
-            <input type="text" name="blogtitle" />
+            <input
+              type="text"
+              name="blogtitle"
+              placeholder="Title of the Blog"
+              className={classes.inputtitle}
+            />
           </div>
           <div className={classes.textarea}>
             <textarea
               type="text"
-              placeholder="Starting Writing Here"
+              placeholder="Starting Writing Content Here"
               name="post"
               className={classes.postinput}
             />
