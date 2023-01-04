@@ -1,0 +1,25 @@
+@import "../../extra";
+
+.userprofile {
+  width: 80%;
+  margin: auto;
+  padding: 4rem 0;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .profileimage {
+      height: 120px;
+      width: 120px;
+      border-radius: 50%;
+      overflow: hidden;
+
+      img {
+        width: 120px;
+      }
+    }
+  }
+}

@@ -17,7 +17,8 @@ const ForumDetailItem = () => {
   const Token = useSelector((state) => state.auth.authTokens);
   const userInfo = useSelector((state) => state.auth.userInfo);
   const COMMENT_DATA = useSelector((state) => state.data.post_comment);
-  const accessToken = Token.access;
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const accessToken = Token ? Token.access : null;
 
   const onCommentTypeHandler = (event) => {
     setCommentDone(event.target.value);
@@ -89,7 +90,7 @@ const ForumDetailItem = () => {
 
   const FORUM_DATA = data;
 
-  let content = <p></p>;
+  let content = "";
 
   if (COMMENT_DATA.length === 0) {
     content = <p>Become first to comment.</p>;
@@ -135,36 +136,40 @@ const ForumDetailItem = () => {
             </div>
             <div className={classes.maincontent}>{FORUM_DATA.content}</div>
 
-            <div className={classes.addcomment}>
-              <form
-                onSubmit={onCommentSubmitHandler}
-                className={classes.commentform}
-              >
-                <input
-                  type="text"
-                  name="comment"
-                  value={commentDone}
-                  onChange={onCommentTypeHandler}
-                  className={classes.commentinput}
-                  placeholder={`Comment as ${userInfo.fname} ${userInfo.lname}`}
-                />
-                <button type="submit" className={classes.commentbutton}>
-                  Post a Comment
-                </button>
-              </form>
-            </div>
+            {isLoggedIn && (
+              <div className={classes.addcomment}>
+                <form
+                  onSubmit={onCommentSubmitHandler}
+                  className={classes.commentform}
+                >
+                  <input
+                    type="text"
+                    name="comment"
+                    value={commentDone}
+                    onChange={onCommentTypeHandler}
+                    className={classes.commentinput}
+                    placeholder={`Comment as ${userInfo.fname} ${userInfo.lname}`}
+                  />
+                  <button type="submit" className={classes.commentbutton}>
+                    Post a Comment
+                  </button>
+                </form>
+              </div>
+            )}
             {content}
-            <div className={classes.commentdata}>
-              {COMMENT_DATA.map((item) => (
-                <CommentData
-                  key={item.id}
-                  fname={item.author_fname}
-                  lname={item.author_lname}
-                  published_date={item.created}
-                  content={item.content}
-                />
-              ))}
-            </div>
+            {isLoggedIn && (
+              <div className={classes.commentdata}>
+                {COMMENT_DATA.map((item) => (
+                  <CommentData
+                    key={item.id}
+                    fname={item.author_fname}
+                    lname={item.author_lname}
+                    published_date={item.created}
+                    content={item.content}
+                  />
+                ))}
+              </div>
+            )}
           </div>
 
           <div className={classes.authorpost}>

@@ -7,6 +7,7 @@ import axios from "axios";
 import Layout from "./components/Layout/Layout";
 
 import { authActions } from "./store/auth";
+import { dataActions } from "./store/data";
 
 import HomePage from "./pages/HomePage";
 import BlogPage from "./pages/BlogPage";
@@ -18,6 +19,7 @@ import BlogDetail from "./pages/BlogDetail";
 import ForumDetail from "./pages/ForumDetail";
 import ForumSubmitPage from "./pages/ForumSubmitPage";
 import BlogSubmitPage from "./pages/BlogSubmitPage";
+import UserProfilePage from "./pages/UserProfilePage";
 
 function App() {
   const dispatch = useDispatch();
@@ -25,6 +27,40 @@ function App() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   const [loading, setLoading] = useState(true);
+
+  const getRoomData = useCallback(async () => {
+    try {
+      const response = await axios({
+        method: "GET",
+        url: "http://localhost:8000/forum/room/",
+        headers: {},
+        data: {},
+      });
+
+      dispatch(
+        dataActions.updateRoom({
+          room_data: response.data,
+        })
+      );
+    } catch (error) {}
+  }, [dispatch]);
+
+  const getBlogRoomData = useCallback(async () => {
+    try {
+      const response = await axios({
+        method: "GET",
+        url: "http://localhost:8000/blog/blogroom/",
+        headers: {},
+        data: {},
+      });
+
+      dispatch(
+        dataActions.updateBlogRoom({
+          blogroom_data: response.data,
+        })
+      );
+    } catch (error) {}
+  }, [dispatch]);
 
   const updatedToken = useCallback(async () => {
     try {
@@ -57,6 +93,8 @@ function App() {
 
     if (loading) {
       updatedToken();
+      getRoomData();
+      getBlogRoomData();
     }
     setLoading(false);
 
@@ -67,7 +105,7 @@ function App() {
     }, fourminutes);
 
     return () => clearInterval(interval);
-  }, [authToken, loading, updatedToken]);
+  }, [authToken, loading, updatedToken, getBlogRoomData, getRoomData]);
 
   return (
     <Layout>
@@ -87,6 +125,7 @@ function App() {
         <Route path="/aboutus" element={<AboutUsPage />} />
         <Route path="/contactus" element={<ContactUsPage />} />
         {!isLoggedIn && <Route path="/register" element={<Register />} />}
+        <Route path="/profiles" element={<UserProfilePage />} />
       </Routes>
     </Layout>
   );
