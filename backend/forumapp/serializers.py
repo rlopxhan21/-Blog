@@ -5,10 +5,11 @@ from .models import Room, Post, Comment, Upvote
 
 class UpvoteSerializers(serializers.ModelSerializer):
     author = serializers.StringRelatedField(read_only=True)
+    post = serializers.StringRelatedField(read_only=True)
 
     class Meta:
         model = Upvote
-        fields = ["author"]
+        fields = ["author", 'post']
 
 
 class CommentSerializers(serializers.ModelSerializer):
