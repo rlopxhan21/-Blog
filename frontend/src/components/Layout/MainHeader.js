@@ -31,79 +31,83 @@ const MainHeader = () => {
               <span className={classes.blinksquare}></span>
             </Link>
           </div>
-          {
-            <div
-              className={`${classes.navlink} ${
-                toggleBar ? `${classes.navshow}` : ""
-              }`}
-            >
-              <ul onClick={onToggleHandler}>
-                <li>
-                  <NavLink
-                    className={(navData) =>
-                      navData.isActive ? classes.active : ""
-                    }
-                    to="home"
-                  >
-                    Home
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    className={(navData) =>
-                      navData.isActive ? classes.active : ""
-                    }
-                    to="/blog"
-                  >
-                    Blog
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    className={(navData) =>
-                      navData.isActive ? classes.active : ""
-                    }
-                    to="/forum"
-                  >
-                    Forum
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    className={(navData) =>
-                      navData.isActive ? classes.active : ""
-                    }
-                    to="/aboutus"
-                  >
-                    About Us
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink
-                    className={(navData) =>
-                      navData.isActive ? classes.active : ""
-                    }
-                    to="/contactus"
-                  >
-                    Contact Us
-                  </NavLink>
-                </li>
-              </ul>
-            </div>
-          }
         </div>
         <div className={classes.right}>
-          {isLoggedIn && (
-            <Link to="/profile" replace>
-              {userInfo.fname} {userInfo.lname}
-            </Link>
-          )}
-          {isLoggedIn && <p onClick={onLogoutHandler}>Logout</p>}
-          {!isLoggedIn && (
-            <Link to="/register" replace>
-              Login/ Sign Up
-            </Link>
-          )}
+          <div
+            className={`${classes.navlink} ${
+              toggleBar ? `${classes.navshow}` : ""
+            }`}
+          >
+            <ul onClick={onToggleHandler}>
+              <li>
+                <NavLink
+                  className={(navData) =>
+                    navData.isActive ? classes.active : ""
+                  }
+                  to="home"
+                >
+                  Home
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className={(navData) =>
+                    navData.isActive ? classes.active : ""
+                  }
+                  to="/blog"
+                >
+                  Blog
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className={(navData) =>
+                    navData.isActive ? classes.active : ""
+                  }
+                  to="/forum"
+                >
+                  Forum
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className={(navData) =>
+                    navData.isActive ? classes.active : ""
+                  }
+                  to="/aboutus"
+                >
+                  About Us
+                </NavLink>
+              </li>
+              <li>
+                <NavLink
+                  className={(navData) =>
+                    navData.isActive ? classes.active : ""
+                  }
+                  to="/contactus"
+                >
+                  Contact Us
+                </NavLink>
+              </li>
+            </ul>
+          </div>
+          <div
+            className={`${classes.navlink} ${
+              toggleBar ? `${classes.navshow}` : ""
+            }`}
+          >
+            {isLoggedIn && (
+              <Link to="/profile" replace>
+                {userInfo.fname} {userInfo.lname}
+              </Link>
+            )}
+            {isLoggedIn && <p onClick={onLogoutHandler}>Logout</p>}
+            {!isLoggedIn && (
+              <Link to="/register" replace>
+                Login/ Sign Up
+              </Link>
+            )}
+          </div>
         </div>
         <div className={classes.bars}>
           {toggleBar && (

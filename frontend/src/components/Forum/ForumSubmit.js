@@ -74,12 +74,6 @@ const ForumSubmit = () => {
           </div>
           <div className={classes.button}>
             <button
-              type="cancel"
-              className={`${classes.postbutton} ${classes.cancelbutton}`}
-            >
-              Cancel
-            </button>
-            <button
               type="submit"
               className={`${classes.postbutton} ${classes.submitbutton}`}
             >

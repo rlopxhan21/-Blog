@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Room, Post, Comment
+from .models import Room, Post, Comment, Upvote
 
 
 @admin.register(Room)
@@ -27,3 +27,6 @@ class CommentAdmin(admin.ModelAdmin):
     list_filter = ['active', 'updated']
     search_fields = ['content', 'post']
     raw_id_fields = ['author']
+
+
+admin.site.register(Upvote)

@@ -37,6 +37,8 @@ class Post(models.Model):
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
+    upvote = models.ForeignKey(
+        "Upvote", on_delete=models.CASCADE, blank=True, related_name='upvoted_post')
 
     objects = models.Manager()
     actives = ActiveManager()
@@ -72,3 +74,15 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.content[: 50]
+
+
+class Upvote(models.Model):
+    post = models.ForeignKey(Post, on_delete=models.CASCADE,
+                             related_name='upvoted_post')
+    author = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='user_upvote')
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.author.first_name} {self.author.last_name} upvoted {self.post.content[:50]}'

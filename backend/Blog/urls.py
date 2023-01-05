@@ -3,7 +3,7 @@ from django.urls import path, include
 
 
 urlpatterns = [
-    path('matrix/', admin.site.urls),
+    path('admin/', admin.site.urls),
 
     path('blog/', include('blogapp.urls', namespace='blogapp')),
     path('forum/', include('forumapp.urls', namespace='forumapp')),
@@ -11,5 +11,5 @@ urlpatterns = [
 ]
 
 urlpatterns.extend(
-    [path('ckeditor/', include('ckeditor_uploader.urls')),]
+    [path('ckeditor/', include('ckeditor_uploader.urls')), ]
 )

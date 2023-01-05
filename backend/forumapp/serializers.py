@@ -1,6 +1,14 @@
 from rest_framework import serializers
 
-from .models import Room, Post, Comment
+from .models import Room, Post, Comment, Upvote
+
+
+class UpvoteSerializers(serializers.ModelSerializer):
+    author = serializers.StringRelatedField(read_only=True)
+
+    class Meta:
+        model = Upvote
+        fields = ["author"]
 
 
 class CommentSerializers(serializers.ModelSerializer):
@@ -18,6 +26,7 @@ class CommentSerializers(serializers.ModelSerializer):
 
 class PostSerializers(serializers.ModelSerializer):
     author = serializers.StringRelatedField(read_only=True)
+    upvoted_post = UpvoteSerializers(many=True)
     post_comment = CommentSerializers(many=True, read_only=True)
     author_fname = serializers.CharField(
         source='author.first_name', read_only=True)

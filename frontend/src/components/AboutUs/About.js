@@ -11,21 +11,21 @@ const About = () => {
           </div>
           <div className={classes.right}>
             <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua.
-              Adipiscing vitae proin sagittis nisl rhoncus mattis rhoncus urna.
-              Amet nisl suscipit adipiscing bibendum. In vitae turpis massa sed
-              elementum tempus egestas. Risus pretium quam vulputate dignissim.
-              Purus faucibus ornare suspendisse sed nisi lacus sed viverra
-              tellus. Tristique risus nec feugiat in. Viverra nam libero justo
-              laoreet sit amet. Volutpat odio facilisis mauris sit. Tristique
-              senectus et netus et malesuada. Imperdiet massa tincidunt nunc
-              pulvinar sapien et ligula. Dapibus ultrices in iaculis nunc sed
-              augue lacus. Laoreet id donec ultrices tincidunt arcu non sodales.
-              Commodo nulla facilisi nullam vehicula ipsum a arcu. Quis
-              imperdiet massa tincidunt nunc pulvinar sapien et ligula
-              ullamcorper. Turpis cursus in hac habitasse platea. Elementum eu
-              facilisis sed odio morbi.
+              A developer with the passion for developing a scalable
+              applications and working across the full stack is seeking to apply
+              and expand my knowledge and skills towards working in a
+              collaborative environment with experienced developers to develop
+              quality software solutions that addresses and solves business
+              problems.
+            </p>
+            <p>
+              Something that I love about software development is the
+              opportunity to work with people from a wide range of disciplines.
+              The software development lifecycle involves working with so many
+              different people and departments and, as a people person and
+              someone who loves to build new relationships, it’s great to be
+              able to come together with other professionals who are striving
+              towards the same goal.
             </p>
           </div>
         </div>

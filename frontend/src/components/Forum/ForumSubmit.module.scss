@@ -19,9 +19,6 @@
       justify-content: space-between;
       gap: 2rem;
 
-      .dropdown {
-      }
-
       .textarea {
         width: 100%;
 
@@ -59,13 +56,6 @@
           padding: 0.5rem 2rem;
           font-weight: 600;
           font-size: 18px;
-        }
-
-        .cancelbutton {
-          &:hover {
-            border: 2px solid $text-color-white;
-            cursor: pointer;
-          }
         }
 
         .submitbutton {
