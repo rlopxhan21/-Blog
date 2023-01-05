@@ -26,7 +26,7 @@ class CommentSerializers(serializers.ModelSerializer):
 
 class PostSerializers(serializers.ModelSerializer):
     author = serializers.StringRelatedField(read_only=True)
-    upvoted_post = UpvoteSerializers(read_only=True, many=True)
+    upvoted_post = UpvoteSerializers(many=True, read_only=True)
     post_comment = CommentSerializers(many=True, read_only=True)
     author_fname = serializers.CharField(
         source='author.first_name', read_only=True)

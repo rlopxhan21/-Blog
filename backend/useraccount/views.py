@@ -1,4 +1,4 @@
-from .serializers import RegistrationSerializer, UserprofileSerializer
+from .serializers import RegistrationSerializer
 from .models import UserProfile
 from .permissions import OwnerorReadOnly
 
@@ -28,14 +28,6 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
 
 class MyTokenObtainPairView(TokenObtainPairView):
     serializer_class = MyTokenObtainPairSerializer
-
-
-class UserprofileAPI(mixins.ListModelMixin, generics.GenericAPIView):
-    serializer_class = UserprofileSerializer
-    queryset = User.objects.all()
-
-    def get(self, request, *args, **kwargs):
-        return self.list(request, *args, *kwargs)
 
 
 class RegisterAPI(mixins.CreateModelMixin, generics.GenericAPIView):
@@ -70,26 +62,3 @@ class LogoutAPI(mixins.CreateModelMixin, generics.GenericAPIView):
             return Response(status=status.HTTP_200_OK)
         except:
             return Response(status=status.HTTP_400_BAD_REQUEST)
-
-
-class GetUserAPI(mixins.ListModelMixin, generics.GenericAPIView):
-    serializer_class = UserprofileSerializer
-    queryset = User.objects.all()
-
-    def get(self, request, *args, **kwargs):
-        return self.list(request, *args, **kwargs)
-
-
-class UserDetailAPI(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
-    queryset = UserProfile.objects.all()
-    serializer_class = UserprofileSerializer
-    # permission_classes = OwnerorReadOnly
-
-    def get(self, request, *args, **kwargs):
-        return self.retrieve(request, *args, **kwargs)
-
-    def put(self, request, *args, **kwargs):
-        return self.update(request, *args, **kwargs)
-
-    def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)
