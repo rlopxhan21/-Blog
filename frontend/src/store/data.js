@@ -2,6 +2,7 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   post_data: [],
+  comment_data: [],
   post_comment: [],
   room_data: [],
   blog_data: [],
@@ -15,6 +16,9 @@ const dataSlice = createSlice({
   reducers: {
     updatePost(state, action) {
       state.post_data = action.payload.post_data;
+    },
+    updateComment(state, action) {
+      state.comment_data = action.payload;
     },
     updatePostComment(state, action) {
       state.post_comment = action.payload;

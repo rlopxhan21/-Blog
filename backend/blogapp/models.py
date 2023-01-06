@@ -58,7 +58,7 @@ class Comment(models.Model):
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='author_blogcomment')
     blog = models.ForeignKey(
-        Blog, on_delete=models.CASCADE, related_name='post_blogcomment')
+        Blog, on_delete=models.CASCADE, related_name='blog_blogcomment')
     created = models.DateTimeField(auto_now_add=True)
     updated = models.DateTimeField(auto_now=True)
     active = models.BooleanField(default=True)
@@ -74,3 +74,27 @@ class Comment(models.Model):
 
     def __str__(self):
         return self.content[: 50]
+
+
+class Upvote(models.Model):
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE,
+                             related_name='upvoted_blog')
+    author = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='authorblog_upvote')
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.author.first_name} {self.author.last_name} upvoted {self.blog.content[:50]}'
+
+
+class Downvote(models.Model):
+    blog = models.ForeignKey(Blog, on_delete=models.CASCADE,
+                             related_name='downvoted_blog')
+    author = models.ForeignKey(
+        User, on_delete=models.CASCADE, related_name='authorblog_downvote')
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f'{self.author.first_name} {self.author.last_name} downvoted {self.blog.content[:50]}'

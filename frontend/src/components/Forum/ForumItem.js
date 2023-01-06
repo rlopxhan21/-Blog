@@ -1,9 +1,88 @@
 import moment from "moment";
-import { Link } from "react-router-dom";
+import axios from "axios";
+import { Link, useNavigate } from "react-router-dom";
 
 import classes from "./ForumItem.module.scss";
 
+import { useSelector, useDispatch } from "react-redux";
+import { dataActions } from "../../store/data";
+
 const ForumItem = (props) => {
+  const dispatch = useDispatch();
+
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const Token = useSelector((state) => state.auth.authTokens);
+  const accessToken = Token ? Token.access : null;
+
+  const navigate = useNavigate();
+
+  const getPostData = async () => {
+    try {
+      const response = await axios({
+        method: "GET",
+        url: "http://localhost:8000/forum/post/",
+        headers: {},
+        data: {},
+      });
+
+      dispatch(
+        dataActions.updatePost({
+          post_data: response.data,
+        })
+      );
+    } catch (error) {
+      alert(error.response.message);
+    }
+  };
+
+  const onUpvoteHandler = () => {
+    if (isLoggedIn) {
+      const sendUpvote = async () => {
+        try {
+          const response = await axios({
+            method: "POST",
+            url: `http://127.0.0.1:8000/forum/post/${props.pk}/upvote/`,
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${accessToken}`,
+            },
+          });
+        } catch (error) {
+          alert(error.response.data);
+        }
+      };
+
+      sendUpvote();
+      getPostData();
+    } else {
+      navigate("/register");
+    }
+  };
+
+  const onDownvoteHandler = () => {
+    if (isLoggedIn) {
+      const sendDownvote = async () => {
+        try {
+          const response = await axios({
+            method: "POST",
+            url: `http://127.0.0.1:8000/forum/post/${props.pk}/downvote/`,
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${accessToken}`,
+            },
+          });
+        } catch (error) {
+          alert(error.response.data);
+        }
+      };
+
+      sendDownvote();
+      getPostData();
+    } else {
+      navigate("/register");
+    }
+  };
+
   const dateTimeAgo = moment(new Date(props.published_date)).fromNow();
 
   return (
@@ -32,7 +111,7 @@ const ForumItem = (props) => {
         <p>{props.post.substring(0, 1000)}</p>
       </Link>
       <div className={classes["post-review"]}>
-        <button>
+        <button onClick={onUpvoteHandler}>
           <div>
             <svg
               width="24"
@@ -48,9 +127,10 @@ const ForumItem = (props) => {
               ></path>
             </svg>
           </div>
+          <span>{props.upvote_number === 0 ? "" : props.upvote_number}</span>
           Upvote
         </button>
-        <button>
+        <button onClick={onDownvoteHandler}>
           <div>
             <svg
               width="24"
@@ -66,6 +146,9 @@ const ForumItem = (props) => {
               ></path>
             </svg>
           </div>
+          <span>
+            {props.downvote_number === 0 ? "" : props.downvote_number}
+          </span>
           Downvote
         </button>
         <Link to={`/forum/${props.pk}`}>
@@ -84,6 +167,9 @@ const ForumItem = (props) => {
                 ></path>
               </svg>
             </div>
+            <span>
+              {props.comment_number === 0 ? "" : props.comment_number}
+            </span>
             Comment
           </button>
         </Link>

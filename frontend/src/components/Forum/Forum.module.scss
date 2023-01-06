@@ -21,6 +21,10 @@
         display: none;
       }
 
+      h3 {
+        margin-bottom: 2rem;
+      }
+
       div {
         display: flex;
         flex-direction: column;
@@ -35,6 +39,25 @@
 
     .right {
       grid-area: right;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      div {
+        margin-top: 2rem;
+        width: 425px;
+
+        &:hover {
+          color: $text-color-lightwhite;
+          text-decoration: underline;
+        }
+
+        span {
+          font-weight: 800;
+        }
+      }
     }
   }
 }

@@ -95,48 +95,6 @@
     }
   }
 
-  .post-review {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1rem;
-
-    margin-bottom: 1rem;
-    button {
-      border: none;
-      background-color: $background-color-grey;
-      color: $text-color-white;
-      font-size: 16px;
-      font-weight: 600;
-      padding: 0.25rem 2rem;
-
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 0.5rem;
-
-      &:hover {
-        background-color: $text-color-white;
-        color: $background-color-grey;
-        cursor: pointer;
-
-        div {
-          svg {
-            stroke: $background-color-black;
-            fill: $text-color-white;
-          }
-        }
-      }
-
-      div {
-        svg {
-          stroke: $text-color-white;
-          fill: $background-color-grey;
-        }
-      }
-    }
-  }
-
   hr {
     border: 1px dashed $background-color-darkgrey;
   }

@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import BlogRoomList, BlogRoomDetail, BlogList, BlogDetail, CommentList, CommentDetail
+from .views import BlogRoomList, BlogRoomDetail, BlogList, BlogDetail, CommentList, CommentCreate, CommentDetail, UpvoteList, UpvoteDelete, DownvoteList, DownvoteDelete
 
 app_name = 'blogapp'
 
@@ -12,7 +12,16 @@ urlpatterns = [
     path('blog/', BlogList.as_view(), name='blog-list'),
     path('blog/<int:pk>/', BlogDetail.as_view(), name='blog-detail'),
 
-    path('blog/<int:pk>/comment/', CommentList.as_view(), name='room-list'),
+    path('blog/comment/', CommentList.as_view(), name='comment-list'),
+    path('blog/<int:pk>/comment/', CommentList.as_view(), name='comment-create'),
     path('blog/comment/<int:pk>/',
-         CommentDetail.as_view(), name='room-detail'),
+         CommentDetail.as_view(), name='comment-detail'),
+
+
+    path('blog/<int:pk>/upvote/', UpvoteList.as_view(), name='upvote-list'),
+    path('blog/upvote/<int:pk>/', UpvoteDelete.as_view(), name='upvote-delete'),
+
+    path('blog/<int:pk>/downvote/', DownvoteList.as_view(), name='downvote-list'),
+    path('blog/downvote/<int:pk>/',
+         DownvoteDelete.as_view(), name='downvote-delete'),
 ]

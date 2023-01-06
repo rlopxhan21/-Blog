@@ -42,10 +42,24 @@ const ForumPage = () => {
     } catch (error) {}
   }, [dispatch]);
 
+  const getCommentData = useCallback(async () => {
+    try {
+      const response = await axios({
+        method: "GET",
+        url: "http://localhost:8000/forum/post/comment/",
+        headers: {},
+        data: {},
+      });
+
+      dispatch(dataActions.updateComment(response.data));
+    } catch (error) {}
+  }, [dispatch]);
+
   useEffect(() => {
     getPostData();
     getRoomData();
-  }, [getPostData, getRoomData]);
+    getCommentData();
+  }, [getPostData, getRoomData, getCommentData]);
 
   return <Forum />;
 };

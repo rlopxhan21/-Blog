@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import BlogRoom, Blog, Comment
+from .models import BlogRoom, Blog, Comment, Upvote, Downvote
 from ckeditor.widgets import CKEditorWidget
 
 
@@ -31,3 +31,7 @@ class CommentAdmin(admin.ModelAdmin):
     list_filter = ['active', 'updated']
     search_fields = ['content', 'post']
     raw_id_fields = ['author']
+
+
+admin.site.register(Upvote)
+admin.site.register(Downvote)

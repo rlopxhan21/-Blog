@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Room, Post, Comment, Upvote
+from .models import Room, Post, Comment, Upvote, Downvote
 
 
 @admin.register(Room)
@@ -30,3 +30,4 @@ class CommentAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Upvote)
+admin.site.register(Downvote)
