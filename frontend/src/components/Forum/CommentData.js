@@ -12,7 +12,7 @@ const CommentData = (props) => {
         </div>
         <div classname={classes.authorsection}>
           <p className={classes.name}>
-            {props.fname} {props.lname}
+            @{props.author} | {props.fname} {props.lname}
           </p>
           <p>{dateTimeAgo}</p>
         </div>

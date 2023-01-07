@@ -30,11 +30,20 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
+
+        div {
+          width: 100%;
+        }
       }
     }
 
     .middle {
       grid-area: middle;
+
+      .nodata {
+        font-weight: 800;
+        font-size: 20px;
+      }
     }
 
     .right {
@@ -47,11 +56,14 @@
 
         &:hover {
           color: $text-color-lightwhite;
-          text-decoration: underline;
         }
 
         span {
           font-weight: 800;
+
+          &:hover {
+            text-decoration: underline;
+          }
         }
 
         .commentcontent {
@@ -61,6 +73,10 @@
           padding: 0.125rem 0.25rem;
           background-color: $background-color-darkgrey;
           border-radius: 2.5px;
+
+          &:hover {
+            text-decoration: underline;
+          }
         }
       }
     }

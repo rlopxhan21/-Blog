@@ -1,6 +1,7 @@
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import jwt_decode from "jwt-decode";
+import { useState } from "react";
 
 import classes from "./Login.module.scss";
 
@@ -8,6 +9,8 @@ import { useDispatch } from "react-redux";
 import { authActions } from "../../store/auth";
 
 const Login = () => {
+  const [formValid, setFormValid] = useState(false);
+
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -18,33 +21,37 @@ const Login = () => {
     const enteredUsername = event.target.username.value;
     const enteredPassword = event.target.password.value;
 
-    const loginUser = async () => {
-      try {
-        const response = await axios({
-          method: "POST",
-          url: "http://127.0.0.1:8000/api/login/",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          data: {
-            username: enteredUsername,
-            password: enteredPassword,
-          },
-        });
-        navigate("/home");
+    if (enteredPassword < 6 || enteredUsername < 3) {
+      setFormValid(true);
+    } else {
+      const loginUser = async () => {
+        try {
+          const response = await axios({
+            method: "POST",
+            url: "http://127.0.0.1:8000/api/login/",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            data: {
+              username: enteredUsername,
+              password: enteredPassword,
+            },
+          });
+          navigate("/home");
 
-        dispatch(
-          authActions.loginUserHandler({
-            token: response.data,
-            access: jwt_decode(response.data.access),
-          })
-        );
-      } catch (error) {
-        alert(error);
-      }
-    };
+          dispatch(
+            authActions.loginUserHandler({
+              token: response.data,
+              access: jwt_decode(response.data.access),
+            })
+          );
+        } catch (error) {
+          setFormValid(true);
+        }
+      };
 
-    loginUser();
+      loginUser();
+    }
   };
 
   const changeFormHandler = () => {
@@ -57,12 +64,17 @@ const Login = () => {
         <form method="POST" action="" onSubmit={onLoginHandler}>
           <div>
             <label>Username</label>
-            <input type="text" name="username" required />
+            <input type="text" name="username" />
           </div>
           <div>
             <label>Password</label>
-            <input type="password" name="password" required />
+            <input type="password" name="password" />
           </div>
+          {formValid && (
+            <p className={classes.errorcontent}>
+              Something went wrong. Please try again!
+            </p>
+          )}
           <button type="submit">Login</button>
         </form>
         <p>

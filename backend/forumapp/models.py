@@ -11,7 +11,7 @@ class ActiveManager(models.Manager):
 
 class Room(models.Model):
     name = models.CharField(max_length=64)
-    slug = models.SlugField(null=True, blank=True)
+    slug = models.SlugField(null=True, blank=True, unique=True)
     description = models.CharField(max_length=1024)
     author = models.ForeignKey(
         User, on_delete=models.SET('AUTHOR NOT AVAILABLE'))

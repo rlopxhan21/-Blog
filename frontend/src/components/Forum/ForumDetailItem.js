@@ -145,20 +145,10 @@ const ForumDetailItem = () => {
 
   const FORUM_DATA = data;
 
-  // let isUpvoted = [];
-
-  // if (isLoggedIn) {
-  //   const isUpvoted = FORUM_DATA.upvoted_post.filter((item) => {
-  //     return item.author.username === userInfo.username;
-  //   });
-  // }
-
-  let content = "";
+  let content = <p></p>;
 
   if (COMMENT_DATA.length === 0) {
     content = <p>Become first to comment.</p>;
-  } else {
-    content = <p></p>;
   }
 
   if (FORUM_DATA.length === 0) {
@@ -184,7 +174,8 @@ const ForumDetailItem = () => {
                 </div>
                 <div>
                   <h4>
-                    {FORUM_DATA.author_fname} {FORUM_DATA.author_lname}
+                    @{FORUM_DATA.author} | {FORUM_DATA.author_fname}{" "}
+                    {FORUM_DATA.author_lname}
                   </h4>
                   <button>Content Creator</button>
                 </div>
@@ -317,6 +308,7 @@ const ForumDetailItem = () => {
                 {COMMENT_DATA.map((item) => (
                   <CommentData
                     key={item.id}
+                    author={item.author}
                     fname={item.author_fname}
                     lname={item.author_lname}
                     published_date={item.created}

@@ -18,9 +18,10 @@ const RoomItem = (props) => {
             "Content-Type": "Application/json",
           },
         });
-        // console.log(response.data.room_post);
 
-        dispatch(dataActions.updatePost(response.data.room_post));
+        dispatch(
+          dataActions.updatePost({ post_data: response.data.room_post })
+        );
       } catch (error) {}
     };
 
