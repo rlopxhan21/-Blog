@@ -12,7 +12,12 @@ const ForumItem = (props) => {
 
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const Token = useSelector((state) => state.auth.authTokens);
+  // const userInfo = useSelector((state) => state.auth.userInfo);
   const accessToken = Token ? Token.access : null;
+
+  // if (isLoggedIn) {
+  //   const isActiveClass = isLoggedIn === (userInfo.author === props.author);
+  // }
 
   const navigate = useNavigate();
 
@@ -39,7 +44,7 @@ const ForumItem = (props) => {
     if (isLoggedIn) {
       const sendUpvote = async () => {
         try {
-          const response = await axios({
+          await axios({
             method: "POST",
             url: `http://127.0.0.1:8000/forum/post/${props.pk}/upvote/`,
             headers: {
@@ -63,7 +68,7 @@ const ForumItem = (props) => {
     if (isLoggedIn) {
       const sendDownvote = async () => {
         try {
-          const response = await axios({
+          await axios({
             method: "POST",
             url: `http://127.0.0.1:8000/forum/post/${props.pk}/downvote/`,
             headers: {
@@ -97,7 +102,7 @@ const ForumItem = (props) => {
           <div>
             <Link to="/">
               <h4>
-                {props.author_fname} {props.author_lname}
+                @{props.author} | {props.fname} {props.lname}
               </h4>
             </Link>
             <button>Content Creator</button>

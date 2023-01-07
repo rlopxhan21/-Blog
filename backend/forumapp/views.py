@@ -125,15 +125,18 @@ class UpvoteList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Generi
                 author_id=self.request.user.id, post_id=pk)
             ItemToDelete.delete()
 
-        if not Upvote.objects.filter(author_id=self.request.user.id, post_id=pk).exists():
+        if Upvote.objects.filter(author_id=self.request.user.id, post_id=pk).exists():
+            ItemToDelete = Upvote.objects.get(
+                author_id=self.request.user.id, post_id=pk)
+            ItemToDelete.delete()
+            return Response("Upvote already exists, so it is deleted!", status=status.HTTP_204_NO_CONTENT)
+
+        else:
             serializer = self.get_serializer(data=request.data)
             serializer.is_valid(raise_exception=True)
             self.perform_create(serializer)
             headers = self.get_success_headers(serializer.data)
             return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-
-        else:
-            return Response("Upvote already exists!", status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)
@@ -170,15 +173,19 @@ class DownvoteList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Gene
                 author_id=self.request.user.id, post_id=pk)
             ItemToDelete.delete()
 
-        if not Downvote.objects.filter(author_id=self.request.user.id, post_id=pk).exists():
+        if Downvote.objects.filter(author_id=self.request.user.id, post_id=pk).exists():
+            ItemToDelete = Downvote.objects.get(
+                author_id=self.request.user.id, post_id=pk)
+            ItemToDelete.delete()
+            return Response("Downvote already exists, so it is deleted!", status=status.HTTP_204_NO_CONTENT)
+
+        else:
+
             serializer = self.get_serializer(data=request.data)
             serializer.is_valid(raise_exception=True)
             self.perform_create(serializer)
             headers = self.get_success_headers(serializer.data)
             return Response(serializer.data, status=status.HTTP_201_CREATED, headers=headers)
-
-        else:
-            return Response("Downvote already exists!", status=status.HTTP_400_BAD_REQUEST)
 
     def get(self, request, *args, **kwargs):
         return self.list(request, *args, **kwargs)

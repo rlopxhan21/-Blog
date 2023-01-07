@@ -24,6 +24,8 @@ class DownvoteSerializers(serializers.ModelSerializer):
 class CommentSerializers(serializers.ModelSerializer):
     post_id = serializers.PrimaryKeyRelatedField(
         source='post.id', read_only=True)
+    post_author = serializers.StringRelatedField(
+        source='post.author', read_only=True)
     author = serializers.StringRelatedField(read_only=True)
 
     author_fname = serializers.CharField(
@@ -54,6 +56,10 @@ class PostSerializers(serializers.ModelSerializer):
 class RoomSerializers(serializers.ModelSerializer):
     author = serializers.StringRelatedField(read_only=True)
     room_post = PostSerializers(many=True, read_only=True)
+    author_fname = serializers.CharField(
+        source='author.first_name', read_only=True)
+    author_lname = serializers.CharField(
+        source='author.last_name', read_only=True)
 
     class Meta:
         model = Room

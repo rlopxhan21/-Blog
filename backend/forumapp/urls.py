@@ -6,7 +6,7 @@ app_name = 'forumapp'
 
 urlpatterns = [
     path('room/', RoomList.as_view(), name='room-list'),
-    path('room/<int:pk>/<slug:slug>/', RoomDetail.as_view(), name='room-detail'),
+    path('room/<int:pk>/', RoomDetail.as_view(), name='room-detail'),
 
     path('post/', PostList.as_view(), name='room-list'),
     path('post/<int:pk>/', PostDetail.as_view(), name='room-detail'),

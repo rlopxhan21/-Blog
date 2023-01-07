@@ -115,6 +115,10 @@ const ForumDetailItem = () => {
     }
   };
 
+  const onCommentClickHandler = () => {
+    !isLoggedIn && navigate("/register");
+  };
+
   const onDownvoteHandler = () => {
     if (isLoggedIn) {
       const sendDownvote = async () => {
@@ -242,7 +246,7 @@ const ForumDetailItem = () => {
                 </span>
                 Downvote
               </button>
-              <button>
+              <button onClick={onCommentClickHandler}>
                 <div>
                   <svg
                     width="24"

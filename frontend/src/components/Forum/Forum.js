@@ -17,8 +17,6 @@ const Forum = () => {
 
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
-  // const dateTimeAgo = moment(new Date(published_date)).fromNow();
-
   if (POST_DATA.length === 0) {
     return <NoBlogFound>No Post Available.</NoBlogFound>;
   }
@@ -34,8 +32,14 @@ const Forum = () => {
           </button>
 
           <div>
+            <RoomItem room="All" />
             {ROOM_DATA.map((item) => (
-              <RoomItem key={item.id} room={item.name} />
+              <RoomItem
+                key={item.id}
+                pk={item.id}
+                room={item.name}
+                room_post={item.room_post}
+              />
             ))}
           </div>
         </div>
@@ -46,8 +50,9 @@ const Forum = () => {
             <ForumItem
               key={item.id}
               pk={item.id}
-              author_fname={item.author_fname}
-              author_lname={item.author_lname}
+              author={item.author}
+              fname={item.author_fname}
+              lname={item.author_lname}
               published_date={item.updated}
               post={item.content}
               upvote_number={item.upvoted_post.length}
@@ -61,11 +66,12 @@ const Forum = () => {
           {COMMENT_DATA.map((item) => (
             <Link to={`${item.post_id}`}>
               <div>
-                <span>
-                  {item.author_fname} {item.author_lname}
-                </span>{" "}
-                commented on <span>{item.content.substring(0, 30)}</span>
-                <p>{moment(new Date(item.updated)).fromNow()}</p>
+                <span>@{item.author.substring(0, 20)}</span> commented on{" "}
+                <span>@{item.post_author.substring(0, 20)}'s</span> post at{" "}
+                <span>{moment(new Date(item.updated)).fromNow()}</span>
+                <p className={classes.commentcontent}>
+                  "{item.content.substring(0, 50)}"
+                </p>
               </div>
             </Link>
           ))}

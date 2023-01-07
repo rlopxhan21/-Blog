@@ -17,7 +17,6 @@ import ContactUsPage from "./pages/ContactUs";
 import Register from "./pages/Register";
 import BlogDetail from "./pages/BlogDetail";
 import ForumDetail from "./pages/ForumDetail";
-import ForumSubmitPage from "./pages/ForumSubmitPage";
 import BlogSubmitPage from "./pages/BlogSubmitPage";
 import UserProfilePage from "./pages/UserProfilePage";
 
@@ -119,9 +118,6 @@ function App() {
         )}
         <Route path="/forum" element={<ForumPage />} />
         <Route path="forum/:forumid" element={<ForumDetail />} />
-        {isLoggedIn && (
-          <Route path="/forum/submit" element={<ForumSubmitPage />} />
-        )}
         <Route path="/aboutus" element={<AboutUsPage />} />
         <Route path="/contactus" element={<ContactUsPage />} />
         {!isLoggedIn && <Route path="/register" element={<Register />} />}
