@@ -47,6 +47,7 @@ class PostSerializers(serializers.ModelSerializer):
         source='author.first_name', read_only=True)
     author_lname = serializers.CharField(
         source='author.last_name', read_only=True)
+    room_name = serializers.CharField(source='room.room', read_only=True)
 
     class Meta:
         model = Post

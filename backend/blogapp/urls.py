@@ -13,7 +13,7 @@ urlpatterns = [
     path('blog/<int:pk>/', BlogDetail.as_view(), name='blog-detail'),
 
     path('blog/comment/', CommentList.as_view(), name='comment-list'),
-    path('blog/<int:pk>/comment/', CommentList.as_view(), name='comment-create'),
+    path('blog/<int:pk>/comment/', CommentCreate.as_view(), name='comment-create'),
     path('blog/comment/<int:pk>/',
          CommentDetail.as_view(), name='comment-detail'),
 

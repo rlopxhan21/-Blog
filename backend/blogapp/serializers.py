@@ -35,8 +35,8 @@ class CommentSerializers(serializers.ModelSerializer):
 
 class BlogSerializers(serializers.ModelSerializer):
     author = serializers.StringRelatedField(read_only=True)
-    upvoted_post = UpvoteSerializers(many=True, read_only=True)
-    downvoted_post = DownvoteSerializers(many=True, read_only=True)
+    upvoted_blog = UpvoteSerializers(many=True, read_only=True)
+    downvoted_blog = DownvoteSerializers(many=True, read_only=True)
     blog_blogcomment = CommentSerializers(many=True, read_only=True)
     author_fname = serializers.CharField(
         source='author.first_name', read_only=True)
