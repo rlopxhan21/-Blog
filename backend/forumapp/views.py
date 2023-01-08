@@ -1,6 +1,6 @@
 from rest_framework.response import Response
 from rest_framework import mixins, generics, status
-from .pagination import StandardPagination
+from .permissions import OwnerorReadOnly
 
 
 from .models import Room, Post, Comment, Upvote, Downvote
@@ -53,7 +53,7 @@ class PostList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericA
 class PostDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
     queryset = Post.actives.all()
     serializer_class = PostSerializers
-    # permission_classes =[]
+    permission_classes = [OwnerorReadOnly]
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)

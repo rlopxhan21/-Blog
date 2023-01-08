@@ -1,4 +1,4 @@
-from .serializers import RegistrationSerializer
+from .serializers import RegistrationSerializer, UserSerializer
 from .models import UserProfile
 from .permissions import OwnerorReadOnly
 
@@ -16,12 +16,9 @@ class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     def get_token(cls, user):
         token = super().get_token(user)
 
-        # Add custom claims
         token['username'] = user.username
         token['fname'] = user.first_name
         token['lname'] = user.last_name
-
-        # ...
 
         return token
 
@@ -62,3 +59,26 @@ class LogoutAPI(mixins.CreateModelMixin, generics.GenericAPIView):
             return Response(status=status.HTTP_200_OK)
         except:
             return Response(status=status.HTTP_400_BAD_REQUEST)
+
+
+class UserList(mixins.ListModelMixin, generics.GenericAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+
+class UserDetail(mixins.RetrieveModelMixin, mixins.DestroyModelMixin, mixins.UpdateModelMixin, generics.GenericAPIView):
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
+    permission_classes = [OwnerorReadOnly]
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
+
+    def delete(self, request, *args, **kwargs):
+        return self.destroy(request, *args, **kwargs)
