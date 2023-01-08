@@ -23,8 +23,6 @@ const RoomInput = () => {
       const enteredRoomName = event.target.roomname.value;
       const enteredRoomDesc = event.target.roomdesc.value;
 
-      console.log(enteredRoomDesc, enteredRoomName);
-
       if (enteredRoomDesc.length === 0 || enteredRoomName.length === 0) {
         setErrorContent(
           <p className={classes.errorcontent}>
@@ -85,7 +83,7 @@ const RoomInput = () => {
             <textarea type="text" name="roomdesc" />
           </div>
           {errorContent}
-          <button type="submit">Send</button>
+          <button type="submit">Create Room</button>
         </form>
       </div>
     </div>

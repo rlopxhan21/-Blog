@@ -66,7 +66,7 @@ const ForumDetailItem = () => {
     } else {
       const sendCommentData = async () => {
         try {
-          const response = await axios({
+          await axios({
             method: "POST",
             url: `http://localhost:8000/forum/post/${params}/comment/`,
             headers: {
@@ -78,7 +78,6 @@ const ForumDetailItem = () => {
               active: true,
             },
           });
-          console.log(response.data);
           getForumDetailData();
         } catch (error) {
           alert(error);
@@ -95,7 +94,7 @@ const ForumDetailItem = () => {
     if (isLoggedIn) {
       const sendUpvote = async () => {
         try {
-          const response = await axios({
+          await axios({
             method: "POST",
             url: `http://127.0.0.1:8000/forum/post/${params}/upvote/`,
             headers: {
@@ -123,7 +122,7 @@ const ForumDetailItem = () => {
     if (isLoggedIn) {
       const sendDownvote = async () => {
         try {
-          const response = await axios({
+          await axios({
             method: "POST",
             url: `http://127.0.0.1:8000/forum/post/${params}/downvote/`,
             headers: {

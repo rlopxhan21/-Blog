@@ -57,8 +57,6 @@ const Forum = () => {
     receiveRoomPost();
   };
 
-  console.log(POST_DATA);
-
   return (
     <div className={classes.forum}>
       {roomForm && (

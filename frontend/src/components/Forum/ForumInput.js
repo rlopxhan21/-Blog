@@ -121,8 +121,6 @@ const ForumInput = () => {
     setEmptyMessage();
   };
 
-  console.log(ROOM_DATA);
-
   return (
     <div>
       {isLoggedIn && (
@@ -131,8 +129,12 @@ const ForumInput = () => {
             <div className={classes.formInput} onClick={onFormClickHandler}>
               <h3>
                 Hey {userInfo.fname} {userInfo.lname}, what do you want to ask
-                or share? click here...
+                or share?
               </h3>
+              <div>
+                <button>Ask Question</button>
+                <button>Share Ideas</button>
+              </div>
             </div>
           )}
 

@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import axios from "axios";
@@ -10,6 +10,7 @@ import { dataActions } from "../../store/data";
 import CommentData from "../Forum/CommentData";
 
 const BlogDetailItem = () => {
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const [commentDone, setCommentDone] = useState("");
   const params = useParams().blogid;
@@ -25,6 +26,9 @@ const BlogDetailItem = () => {
   };
 
   const [data, setData] = useState([]);
+  const [errorContent, setErrorContent] = useState("");
+
+  let content = "";
 
   const getBlogDetailData = useCallback(async () => {
     try {
@@ -58,12 +62,15 @@ const BlogDetailItem = () => {
     const enteredComment = event.target.comment.value;
 
     if (enteredComment.length === 0) {
+      setErrorContent(
+        <p className={classes.error}>Something went wrong. Please try again!</p>
+      );
     } else {
       const sendCommentData = async () => {
         try {
-          const response = await axios({
+          await axios({
             method: "POST",
-            url: `http://localhost:8000/blog/blog/${params}/comment/`,
+            url: `http://127.0.0.1:8000/blog/blog/${params}/comment/`,
             headers: {
               "Content-Type": "application/json",
               Authorization: `Bearer ${accessToken}`,
@@ -73,7 +80,6 @@ const BlogDetailItem = () => {
               active: true,
             },
           });
-          console.log(response.data);
           getBlogDetailData();
         } catch (error) {
           alert(error);
@@ -86,8 +92,55 @@ const BlogDetailItem = () => {
     }
   };
 
+  const onUpvoteHandler = () => {
+    if (isLoggedIn) {
+      const sendUpvote = async () => {
+        try {
+          await axios({
+            method: "POST",
+            url: `http://127.0.0.1:8000/blog/blog/${params}/upvote/`,
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${accessToken}`,
+            },
+          });
+        } catch (error) {
+          alert(error.response.data);
+        }
+      };
+
+      sendUpvote();
+      getBlogDetailData();
+    } else {
+      navigate("/register");
+    }
+  };
+
+  const onDownvoteHandler = () => {
+    if (isLoggedIn) {
+      const sendUpvote = async () => {
+        try {
+          await axios({
+            method: "POST",
+            url: `http://127.0.0.1:8000/blog/blog/${params}/downvote/`,
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${accessToken}`,
+            },
+          });
+        } catch (error) {
+          alert(error.response.data);
+        }
+      };
+
+      sendUpvote();
+      getBlogDetailData();
+    } else {
+      navigate("/register");
+    }
+  };
+
   const BLOG_DATA = data;
-  let content = <p></p>;
 
   if (COMMENT_DATA.length === 0) {
     content = <p>Become first to comment.</p>;
@@ -134,7 +187,7 @@ const BlogDetailItem = () => {
             <div className={classes.maincontent}>{BLOG_DATA.content}</div>
 
             <div className={classes["post-review"]}>
-              <button>
+              <button onClick={onUpvoteHandler}>
                 <div>
                   <svg
                     width="24"
@@ -150,9 +203,14 @@ const BlogDetailItem = () => {
                     ></path>
                   </svg>
                 </div>
+                <span>
+                  {BLOG_DATA.upvoted_blog.length === 0
+                    ? ""
+                    : BLOG_DATA.upvoted_blog.length}
+                </span>
                 Upvote
               </button>
-              <button>
+              <button onClick={onDownvoteHandler}>
                 <div>
                   <svg
                     width="24"
@@ -168,6 +226,11 @@ const BlogDetailItem = () => {
                     ></path>
                   </svg>
                 </div>
+                <span>
+                  {BLOG_DATA.downvoted_blog.length === 0
+                    ? ""
+                    : BLOG_DATA.downvoted_blog.length}
+                </span>
                 Downvote
               </button>
               <button>
@@ -185,7 +248,14 @@ const BlogDetailItem = () => {
                     ></path>
                   </svg>
                 </div>
-                Comment
+                <div>
+                  <span>
+                    {BLOG_DATA.blog_blogcomment.length === 0
+                      ? ""
+                      : BLOG_DATA.blog_blogcomment.length}
+                  </span>{" "}
+                  Comment
+                </div>
               </button>
               <button>
                 <div>
@@ -231,6 +301,7 @@ const BlogDetailItem = () => {
               </div>
             )}
             {content}
+            {errorContent}
             {isLoggedIn && (
               <div className={classes.commentdata}>
                 {COMMENT_DATA.map((item) => (

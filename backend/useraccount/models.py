@@ -1,9 +1,7 @@
+from django.contrib.auth.models import AbstractUser
 from django.db import models
-from django.contrib.auth.models import User
 
 
 class UserProfile(models.Model):
-    author = models.OneToOneField(User, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return self.author
+    profile_picture = models.ImageField(
+        null=True, default="images/default.png")

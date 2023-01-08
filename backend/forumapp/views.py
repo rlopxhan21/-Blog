@@ -1,5 +1,6 @@
 from rest_framework.response import Response
 from rest_framework import mixins, generics, status
+from rest_framework.permissions import IsAuthenticatedOrReadOnly
 from .permissions import OwnerorReadOnly
 
 
@@ -10,7 +11,6 @@ from .serializers import RoomSerializers, PostSerializers, CommentSerializers, U
 class RoomList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     queryset = Room.actives.all()
     serializer_class = RoomSerializers
-    # pagination_class = StandardPagination
 
     def perform_create(self, serializer):
         serializer.save(author_id=self.request.user.id)
@@ -25,6 +25,7 @@ class RoomList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericA
 class RoomDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
     queryset = Room.actives.all()
     serializer_class = RoomSerializers
+    permission_classes = [OwnerorReadOnly]
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
@@ -94,7 +95,7 @@ class CommentCreate(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Gen
 class CommentDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.DestroyModelMixin, generics.GenericAPIView):
     queryset = Comment.actives.all()
     serializer_class = CommentSerializers
-    # permission_classes =[]
+    permission_classes = [OwnerorReadOnly]
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)
@@ -108,6 +109,7 @@ class CommentDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, mixins.D
 
 class UpvoteList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     serializer_class = UpvoteSerializers
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self, *args, **kwargs):
         pk = self.kwargs['pk']
@@ -145,17 +147,9 @@ class UpvoteList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Generi
         return self.create(request, *args, **kwargs)
 
 
-class UpvoteDelete(mixins.DestroyModelMixin, generics.GenericAPIView):
-    queryset = Upvote.objects.all()
-    serializer_class = UpvoteSerializers
-    # permission_classes = []
-
-    def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)
-
-
 class DownvoteList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.GenericAPIView):
     serializer_class = DownvoteSerializers
+    permission_classes = [IsAuthenticatedOrReadOnly]
 
     def get_queryset(self, *args, **kwargs):
         pk = self.kwargs['pk']
@@ -192,12 +186,3 @@ class DownvoteList(mixins.ListModelMixin, mixins.CreateModelMixin, generics.Gene
 
     def post(self, request, *args, **kwargs):
         return self.create(request, *args, **kwargs)
-
-
-class DownvoteDelete(mixins.DestroyModelMixin, generics.GenericAPIView):
-    queryset = Downvote.objects.all()
-    serializer_class = DownvoteSerializers
-    # permission_classes = []
-
-    def delete(self, request, *args, **kwargs):
-        return self.destroy(request, *args, **kwargs)

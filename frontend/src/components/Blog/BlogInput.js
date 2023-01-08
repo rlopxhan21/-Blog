@@ -1,21 +1,24 @@
 import { Link } from "react-router-dom";
 
+import { useSelector } from "react-redux";
+
 import classes from "./BlogInput.module.scss";
 
 const BlogInput = () => {
+  const userInfo = useSelector((state) => state.auth.userInfo);
   return (
-    <div className={classes.foruminput}>
-      <div className={classes.container}>
+    <Link to="/blog/submit">
+      <div className={classes.formInput}>
+        <h3>
+          Hey {userInfo.fname} {userInfo.lname}, start writing and share your
+          ideas to the world!
+        </h3>
         <div>
-          <Link to="/">
-            <img src={require("../../assets/images/profile.jpg")} alt={""} />
-          </Link>
+          <button>Ask Question</button>
+          <button>Share Ideas</button>
         </div>
-        <Link to="/blog/submit" className={classes.createpost}>
-          <button>Create Post</button>
-        </Link>
       </div>
-    </div>
+    </Link>
   );
 };
 

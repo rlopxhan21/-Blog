@@ -74,8 +74,6 @@ function App() {
         },
       });
 
-      console.log(authToken.refresh);
-
       dispatch(
         authActions.loginUserHandler({
           token: response.data,

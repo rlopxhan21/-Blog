@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import BlogRoomList, BlogRoomDetail, BlogList, BlogDetail, CommentList, CommentCreate, CommentDetail, UpvoteList, UpvoteDelete, DownvoteList, DownvoteDelete
+from .views import BlogRoomList, BlogRoomDetail, BlogList, BlogDetail, CommentList, CommentCreate, CommentDetail, UpvoteList, DownvoteList
 
 app_name = 'blogapp'
 
@@ -19,9 +19,6 @@ urlpatterns = [
 
 
     path('blog/<int:pk>/upvote/', UpvoteList.as_view(), name='upvote-list'),
-    path('blog/upvote/<int:pk>/', UpvoteDelete.as_view(), name='upvote-delete'),
-
     path('blog/<int:pk>/downvote/', DownvoteList.as_view(), name='downvote-list'),
-    path('blog/downvote/<int:pk>/',
-         DownvoteDelete.as_view(), name='downvote-delete'),
+
 ]

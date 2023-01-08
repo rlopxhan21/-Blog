@@ -1,3 +1,4 @@
+import { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
@@ -5,6 +6,7 @@ import { useSelector } from "react-redux";
 import classes from "./BlogSubmit.module.scss";
 
 const BlogSubmit = () => {
+  const [erorrContent, setErrorContent] = useState("");
   const navigate = useNavigate();
 
   const Token = useSelector((state) => state.auth.authTokens);
@@ -19,47 +21,66 @@ const BlogSubmit = () => {
     const enteredBlogRoom = event.target.room.value;
     const enteredTitle = event.target.blogtitle.value;
 
-    const sendPostData = async () => {
-      try {
-        const response = await axios({
-          method: "POST",
-          url: "http://127.0.0.1:8000/blog/blog/",
-          headers: {
-            "Content-Type": "application/json",
-            Authorization: `Bearer ${accessToken}`,
-          },
-          data: {
-            title: enteredTitle,
-            content: enteredBlog,
-            blogroom: enteredBlogRoom,
-          },
-        });
+    if (
+      enteredBlog.length === 0 ||
+      enteredBlogRoom.length === 0 ||
+      enteredTitle.length === 0
+    ) {
+      setErrorContent(
+        <p className={classes.errorcontent}>
+          Something went wrong. Please try again!
+        </p>
+      );
+    } else {
+      const sendPostData = async () => {
+        try {
+          await axios({
+            method: "POST",
+            url: "http://127.0.0.1:8000/blog/blog/",
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${accessToken}`,
+            },
+            data: {
+              title: enteredTitle,
+              content: enteredBlog,
+              blogroom: enteredBlogRoom,
+            },
+          });
 
-        console.log(response.data);
+          navigate("/blog");
+        } catch (error) {
+          alert(error);
+        }
+      };
 
-        navigate("/blog");
-      } catch (error) {
-        alert(error);
-      }
-    };
+      sendPostData();
+    }
+  };
 
-    sendPostData();
+  const onCancelHandler = () => {
+    navigate("/blog");
   };
 
   return (
     <div className={classes.forumsubmit}>
       <div className={classes.container}>
         <form onSubmit={onSubmitHandler} className={classes.roomform}>
-          <div className={classes.dropdown}>
-            <fieldset className="language">
-              <legend>Select a Room:</legend>
-              {BLOGROOM_DATA.map((item) => (
-                <div key={item.id}>
-                  <input name="room" type="radio" value={item.id} />
-                  <label>{item.name}</label>
-                </div>
-              ))}
-            </fieldset>
+          <div className={classes.formdiv}>
+            {BLOGROOM_DATA.map((item) => (
+              <div>
+                <input
+                  id={`${item.name}`}
+                  className={classes.selectroom}
+                  name="room"
+                  type="radio"
+                  value={item.id}
+                />
+                <label htmlFor={`${item.name}`} className={classes.roomlabel}>
+                  {item.name}
+                </label>
+              </div>
+            ))}
           </div>
           <div className={classes.blogtitle}>
             <input
@@ -78,8 +99,9 @@ const BlogSubmit = () => {
             />
           </div>
           <div className={classes.button}>
+            {erorrContent}
             <button
-              type="cancel"
+              onClick={onCancelHandler}
               className={`${classes.postbutton} ${classes.cancelbutton}`}
             >
               Cancel

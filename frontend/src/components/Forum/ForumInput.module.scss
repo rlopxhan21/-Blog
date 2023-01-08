@@ -1,14 +1,42 @@
 @import "../../extra";
 
 .formInput {
+  border: 2px solid $text-color-white;
+  padding: 0.5rem 0;
+  background-color: $background-color-darkgrey;
+  margin-bottom: 2rem;
+
   h3 {
     text-align: center;
-    margin-bottom: 2rem;
-    text-decoration: underline;
-    font-size: 24px;
+    font-weight: 300;
+    margin-bottom: 1rem;
 
     &:hover {
       cursor: pointer;
+    }
+  }
+
+  div {
+    width: 100%;
+    margin-bottom: 0.5rem;
+
+    display: flex;
+    justify-content: space-around;
+
+    button {
+      width: 45%;
+      background-color: $background-color-darkgrey;
+      color: $text-color-white;
+      border: 1px solid $text-color-white;
+      padding: 0.25rem 0.5rem;
+      font-weight: 600;
+      font-size: 16px;
+
+      &:hover {
+        cursor: pointer;
+        background-color: $text-color-white;
+        color: $background-color-grey;
+      }
     }
   }
 }

@@ -1,6 +1,6 @@
 from django.urls import path
 
-from .views import RoomList, RoomDetail, PostList, PostDetail, CommentList, CommentCreate, CommentDetail, UpvoteList, UpvoteDelete, DownvoteList, DownvoteDelete
+from .views import RoomList, RoomDetail, PostList, PostDetail, CommentList, CommentCreate, CommentDetail, UpvoteList, DownvoteList
 
 app_name = 'forumapp'
 
@@ -17,9 +17,6 @@ urlpatterns = [
          CommentDetail.as_view(), name='comment-detail'),
 
     path('post/<int:pk>/upvote/', UpvoteList.as_view(), name='upvote-list'),
-    path('post/upvote/<int:pk>/', UpvoteDelete.as_view(), name='upvote-delete'),
-
     path('post/<int:pk>/downvote/', DownvoteList.as_view(), name='downvote-list'),
-    path('post/downvote/<int:pk>/',
-         DownvoteDelete.as_view(), name='downvote-delete'),
+
 ]

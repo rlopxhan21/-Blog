@@ -1,5 +1,4 @@
 from .serializers import RegistrationSerializer, UserSerializer
-from .models import UserProfile
 from .permissions import OwnerorReadOnly
 
 from django.contrib.auth.models import User
