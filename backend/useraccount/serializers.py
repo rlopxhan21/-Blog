@@ -1,11 +1,19 @@
 from rest_framework import serializers
 from django.contrib.auth.models import User
 
+from .models import UserProfile
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
         exclude = ["password", 'id']
+
+
+class UserProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserProfile
+        fields = "__all__"
 
 
 class RegistrationSerializer(serializers.ModelSerializer):

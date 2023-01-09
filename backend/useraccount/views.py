@@ -1,5 +1,6 @@
-from .serializers import RegistrationSerializer, UserSerializer
-from .permissions import OwnerorReadOnly
+from .serializers import RegistrationSerializer, UserSerializer, UserProfileSerializer
+from .permissions import OwnerorReadOnly, OwnerorReadOnlyForOthers
+from .models import UserProfile
 
 from django.contrib.auth.models import User
 from rest_framework import generics, mixins, permissions, status
@@ -81,3 +82,23 @@ class UserDetail(mixins.RetrieveModelMixin, mixins.DestroyModelMixin, mixins.Upd
 
     def delete(self, request, *args, **kwargs):
         return self.destroy(request, *args, **kwargs)
+
+
+class UserProfileList(mixins.ListModelMixin, generics.GenericAPIView):
+    serializer_class = UserProfileSerializer
+    queryset = UserProfile.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        return self.list(request, *args, **kwargs)
+
+
+class UserProfileDetail(mixins.RetrieveModelMixin, mixins.UpdateModelMixin, generics.GenericAPIView):
+    serializer_class = UserProfileSerializer
+    queryset = UserProfile.objects.all()
+    permission_classes = [OwnerorReadOnlyForOthers]
+
+    def get(self, request, *args, **kwargs):
+        return self.retrieve(request, *args, **kwargs)
+
+    def put(self, request, *args, **kwargs):
+        return self.update(request, *args, **kwargs)
