@@ -1,7 +1,7 @@
 from .serializers import RegistrationSerializer, UserSerializer
 from .permissions import OwnerorReadOnly, OwnerorReadOnlyForOthers
 
-from django.contrib.auth.models import User
+from .models import User
 from rest_framework import generics, mixins, permissions, status
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -29,7 +29,7 @@ class MyTokenObtainPairView(TokenObtainPairView):
 class RegisterAPI(mixins.CreateModelMixin, generics.GenericAPIView):
     serializer_class = RegistrationSerializer
     queryset = User.objects.all()
-    permission_classes = [permissions.AllowAny]
+    # permission_classes = [permissions.AllowAny]
 
     def post(self, request, *args, **kwargs):
         serializer = self.serializer_class(data=request.data)
@@ -71,7 +71,7 @@ class UserList(mixins.ListModelMixin, generics.GenericAPIView):
 class UserDetail(mixins.RetrieveModelMixin, mixins.DestroyModelMixin, mixins.UpdateModelMixin, generics.GenericAPIView):
     serializer_class = UserSerializer
     queryset = User.objects.all()
-    permission_classes = [OwnerorReadOnly]
+    # permission_classes = [OwnerorReadOnly]
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)

@@ -10,6 +10,4 @@ urlpatterns = [
 
     path('userprofile/', UserList.as_view(), name='user-profile'),
     path('userprofile/<int:pk>/', UserDetail.as_view(), name='user-detail'),
-
-
 ]

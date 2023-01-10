@@ -100,7 +100,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 # Default Auth Models
 
-# AUTH_USER_MODEL = 'useraccount.User'
+AUTH_USER_MODEL = 'useraccount.User'
 
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
