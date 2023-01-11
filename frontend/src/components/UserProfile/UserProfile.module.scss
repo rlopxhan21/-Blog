@@ -1,15 +1,25 @@
 @import "../../extra";
 
 .userprofile {
-  width: 80%;
+  width: 35%;
   margin: auto;
   padding: 4rem 0;
 
   .container {
+    width: 80%;
+    margin: auto;
+    text-align: start;
+
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+
+    form {
+      .picform {
+        padding: 5rem 4rem;
+      }
+    }
 
     .profileimage {
       height: 120px;
@@ -19,6 +29,49 @@
 
       img {
         width: 120px;
+      }
+    }
+
+    .changepiclink {
+      margin-top: 1rem;
+
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
+      }
+    }
+
+    .authortop {
+      width: 100%;
+      margin-top: 6rem;
+
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+
+      hr {
+        border: 1px dashed $text-color-white;
+      }
+
+      .primaryfield {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .fieldvalue {
+          width: 250px;
+          text-align: center;
+        }
+      }
+    }
+
+    .editlink {
+      margin-left: auto;
+      margin-top: 2rem;
+
+      &:hover {
+        cursor: pointer;
+        text-decoration: underline;
       }
     }
   }

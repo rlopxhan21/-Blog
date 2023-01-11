@@ -3,9 +3,10 @@ from .models import User
 
 
 class UserSerializer(serializers.ModelSerializer):
+
     class Meta:
         model = User
-        exclude = ["password", 'id']
+        fields = '__all__'
 
 
 class RegistrationSerializer(serializers.ModelSerializer):
