@@ -8,6 +8,7 @@ const initialState = {
   blog_data: [],
   blog_comment: [],
   blogroom_data: [],
+  profile_data: [],
 };
 
 const dataSlice = createSlice({
@@ -35,6 +36,9 @@ const dataSlice = createSlice({
     },
     updateBlogComment(state, action) {
       state.blog_comment = action.payload;
+    },
+    updateProfile(state, action) {
+      state.profile_data = action.payload;
     },
   },
 });

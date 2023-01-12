@@ -1,54 +1,45 @@
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 import classes from "./UserProfile.module.scss";
 
-import Modal from "../UI/Modal";
+import NoBlogFound from "../UI/NoBlogFound";
+import UserProfileForm from "./UserProfileForm";
 
 const UserProfile = () => {
-  const [picForm, setPicForm] = useState(false);
+  const PROFILE_DATA = useSelector((state) => state.data.profile_data);
+  const userInfo = useSelector((state) => state.auth.userInfo);
 
-  const onChangeProfilePicHandler = () => {
-    setPicForm(true);
+  const userId = userInfo ? userInfo.user_id : "";
+  const ownerStatus = userId === PROFILE_DATA.id;
+
+  const [editForm, setEditForm] = useState(false);
+
+  const onEditHandler = () => {
+    setEditForm(true);
   };
 
   const onCloseHandler = () => {
-    setPicForm(false);
+    setEditForm(false);
   };
+
+  if (PROFILE_DATA.length === 0) {
+    return <NoBlogFound>No User Found!</NoBlogFound>;
+  }
 
   return (
     <div className={classes.userprofile}>
       <div className={classes.container}>
-        {picForm && (
-          <Modal onClose={onCloseHandler}>
-            <form
-              className={classes.picform}
-              accept-charset="utf-8"
-              enctype="multipart/form-data"
-            >
-              <div>
-                <label htmlFor="upload"> Upload your image file here:</label>
-                <input id="upload" type="file" name="upload"></input>
-              </div>
-              <button type="submit">Submit</button>
-            </form>
-          </Modal>
-        )}
+        {editForm && <UserProfileForm onCloseHandler={onCloseHandler} />}
         <div className={classes.profileimage}>
-          <img src={require("../../assets/images/profile.jpg")} alt={""} />
+          <img src={PROFILE_DATA.image} alt={""} />
         </div>
-
-        <p
-          className={classes.changepiclink}
-          onClick={onChangeProfilePicHandler}
-        >
-          Change Profile Image
-        </p>
 
         <div className={classes.authortop}>
           <div className={classes.primaryfield}>
             <h3>First Name</h3>
             <div className={classes.fieldvalue}>
-              <p>Ronish</p>
+              <p>{PROFILE_DATA.first_name}</p>
             </div>
           </div>
           <hr />
@@ -56,7 +47,7 @@ const UserProfile = () => {
           <div className={classes.primaryfield}>
             <h3>Last Name</h3>
             <div className={classes.fieldvalue}>
-              <p>Lopxhan</p>
+              <p>{PROFILE_DATA.last_name}</p>
             </div>
           </div>
           <hr />
@@ -64,7 +55,7 @@ const UserProfile = () => {
           <div className={classes.primaryfield}>
             <h3>Username</h3>
             <div className={classes.fieldvalue}>
-              <p>@rlopxhan21</p>
+              <p>{PROFILE_DATA.username}</p>
             </div>
           </div>
           <hr />
@@ -72,7 +63,7 @@ const UserProfile = () => {
           <div className={classes.primaryfield}>
             <h3>Email</h3>
             <div className={classes.fieldvalue}>
-              <p>rlopxhan21@gmail.com</p>
+              <p>{PROFILE_DATA.email}</p>
             </div>
           </div>
           <hr />
@@ -86,7 +77,11 @@ const UserProfile = () => {
           <hr />
         </div>
         <div className={classes.authorbelow}></div>
-        <p className={classes.editlink}>Edit Profile</p>
+        {ownerStatus && (
+          <p className={classes.editlink} onClick={onEditHandler}>
+            Edit Profile
+          </p>
+        )}
       </div>
     </div>
   );

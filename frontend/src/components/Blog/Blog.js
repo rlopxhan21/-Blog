@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useSelector } from "react-redux";
 
 import classes from "./Blog.module.scss";
@@ -7,12 +8,15 @@ import NoBlogFound from "../UI/NoBlogFound";
 import BlogInput from "./BlogInput";
 
 const Blog = () => {
+  const [noBlog, setNoBlog] = useState(
+    <NoBlogFound>No Blog Post Available.</NoBlogFound>
+  );
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
   const BLOG_DATA = useSelector((state) => state.data.blog_data);
 
-  if (BLOG_DATA.length === 0) {
-    return <NoBlogFound>No Blog Post Available.</NoBlogFound>;
+  if (BLOG_DATA.length !== 0) {
+    setNoBlog("");
   }
 
   return (
@@ -20,6 +24,7 @@ const Blog = () => {
       <div className={classes.container}>
         <div className={classes["blog-list"]}>
           {isLoggedIn && <BlogInput />}
+          {noBlog}
           {BLOG_DATA.map((item) => (
             <BlogItem
               key={item.id}

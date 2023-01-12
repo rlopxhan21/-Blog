@@ -119,7 +119,7 @@ function App() {
         <Route path="/aboutus" element={<AboutUsPage />} />
         <Route path="/contactus" element={<ContactUsPage />} />
         {!isLoggedIn && <Route path="/register" element={<Register />} />}
-        <Route path="/profiles" element={<UserProfilePage />} />
+        <Route path="/profiles/:profileid" element={<UserProfilePage />} />
       </Routes>
     </Layout>
   );

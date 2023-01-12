@@ -12,12 +12,7 @@ const ForumItem = (props) => {
 
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
   const Token = useSelector((state) => state.auth.authTokens);
-  // const userInfo = useSelector((state) => state.auth.userInfo);
   const accessToken = Token ? Token.access : null;
-
-  // if (isLoggedIn) {
-  //   const isActiveClass = isLoggedIn === (userInfo.author === props.author);
-  // }
 
   const navigate = useNavigate();
 
@@ -95,12 +90,12 @@ const ForumItem = (props) => {
       <div className={classes["author-section"]}>
         <div className={classes.authorright}>
           <div className={classes["author-image"]}>
-            <Link to="/profiles">
+            <Link to={`/profiles/${props.author_id}`}>
               <img src={require("../../assets/images/profile.jpg")} alt={""} />
             </Link>
           </div>
           <div>
-            <Link to="/">
+            <Link to={`/profiles/${props.author_id}`}>
               <h4>
                 @{props.author} | {props.fname} {props.lname}
               </h4>

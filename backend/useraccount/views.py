@@ -71,7 +71,7 @@ class UserList(mixins.ListModelMixin, generics.GenericAPIView):
 class UserDetail(mixins.RetrieveModelMixin, mixins.DestroyModelMixin, mixins.UpdateModelMixin, generics.GenericAPIView):
     serializer_class = UserSerializer
     queryset = User.objects.all()
-    permission_classes = [OwnerorReadOnly]
+    # permission_classes = [OwnerorReadOnly]
 
     def get(self, request, *args, **kwargs):
         return self.retrieve(request, *args, **kwargs)

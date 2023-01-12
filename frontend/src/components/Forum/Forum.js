@@ -101,6 +101,7 @@ const Forum = () => {
             <ForumItem
               key={item.id}
               pk={item.id}
+              author_id={item.author_id}
               author={item.author}
               fname={item.author_fname}
               lname={item.author_lname}
@@ -116,7 +117,7 @@ const Forum = () => {
         <div className={classes.right}>
           <h3>Recent Activities</h3>
           {COMMENT_DATA.map((item) => (
-            <Link to={`${item.post_id}`}>
+            <Link to={`${item.post_id}`} key={item.id}>
               <div>
                 <Link to="/userprofile">
                   <span>@{item.author.substring(0, 20)}</span>

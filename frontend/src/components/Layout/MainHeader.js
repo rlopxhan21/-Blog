@@ -97,7 +97,7 @@ const MainHeader = () => {
             }`}
           >
             {isLoggedIn && (
-              <Link to="/profile" replace>
+              <Link to={`/profiles/${userInfo.user_id}`} replace>
                 {userInfo.fname} {userInfo.lname}
               </Link>
             )}
